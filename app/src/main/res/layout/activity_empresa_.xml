@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        tools:context=".Empresa_Activity">
+
+
+    <TextView
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:text="Datos de la empresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="@android:color/black"/>
+    <LinearLayout
+            android:padding="5sp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="NIF / DNI / NIE "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <EditText
+
+                android:paddingLeft="20sp"
+                android:id="@+id/dniEd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/nombreEd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Apellidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/apellidosEd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Domicilio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/domicilioEd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Localidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/localidadEd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Código postal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/cpED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <LinearLayout
+
+            android:gravity="center|right"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <Button
+                android:id="@+id/btnSiguiente"
+                android:layout_marginRight="20dp"
+                android:hint="Siguiente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>
