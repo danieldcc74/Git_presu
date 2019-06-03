@@ -40,7 +40,7 @@
         <EditText
 
                 android:paddingLeft="20sp"
-                android:id="@+id/dniEd"
+                android:id="@+id/identificacionCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/nombreEd"
+                android:id="@+id/nombreCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/apellidosEd"
+                android:id="@+id/apellidosCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/domicilioEd"
+                android:id="@+id/domicilioCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/localidadEd"
+                android:id="@+id/localidadCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -90,24 +90,18 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/cpED"
+                android:id="@+id/codigoPostalCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-    </LinearLayout>
-    <LinearLayout
-
-            android:gravity="center|right"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
         <Button
-                android:id="@+id/btnSiguiente"
-                android:layout_marginRight="20dp"
+                android:id="@+id/btnSiguienteAlPresupuesto"
                 android:hint="Siguiente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:text="Siguiente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
     </LinearLayout>
+
+
 
 </LinearLayout>

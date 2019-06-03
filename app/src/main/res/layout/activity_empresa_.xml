@@ -21,6 +21,7 @@
     <View
             android:layout_width="fill_parent"
             android:layout_height="3dp"
+            android:layout_marginBottom="20dp"
             android:background="@android:color/black"/>
     <LinearLayout
             android:padding="5sp"
@@ -29,9 +30,7 @@
             android:layout_height="wrap_content">
 
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
         <TextView
                 android:textStyle="bold"
                 android:text="NIF / DNI / NIE "
@@ -40,7 +39,7 @@
         <EditText
 
                 android:paddingLeft="20sp"
-                android:id="@+id/dniEd"
+                android:id="@+id/identificacionEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -50,7 +49,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/nombreEd"
+                android:id="@+id/nombreEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -60,7 +59,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/apellidosEd"
+                android:id="@+id/apellidosEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -70,7 +69,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/domicilioEd"
+                android:id="@+id/domicilioEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -80,7 +79,7 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/localidadEd"
+                android:id="@+id/localidadEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <TextView
@@ -90,24 +89,18 @@
                 android:layout_height="wrap_content"/>
         <EditText
                 android:paddingLeft="20sp"
-                android:id="@+id/cpED"
+                android:id="@+id/codigoPostalEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-    </LinearLayout>
-    <LinearLayout
-
-            android:gravity="center|right"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
         <Button
-                android:id="@+id/btnSiguiente"
-                android:layout_marginRight="20dp"
+                android:id="@+id/btnSiguienteAlCliente"
                 android:hint="Siguiente"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
     </LinearLayout>
+
+
+
 
 </LinearLayout>
