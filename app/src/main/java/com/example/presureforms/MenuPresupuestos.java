@@ -1,5 +1,6 @@
 package com.example.presureforms;
 
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,11 @@ public class MenuPresupuestos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
+
+    BBDDSQL conexion = new BBDDSQL(this,"bd_clientes",null,1);
+
+
+
 
         btnActualizar=(Button)findViewById(R.id.btnActualizarPrespuesto);
         btnBorrar=(Button)findViewById(R.id.btnBorrarPresupuesto);
