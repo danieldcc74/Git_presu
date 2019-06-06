@@ -25,16 +25,17 @@ public class PrespuestoEnPdf {
     private Font subtitulo = new Font(Font.FontFamily.COURIER, 13);
 
 
-    public PrespuestoEnPdf(Context cotext) throws FileNotFoundException, DocumentException {
+    public PrespuestoEnPdf(Context cotext)  {
         this.context = context;
-        escribirPdf = PdfWriter.getInstance(document, new FileOutputStream(ficheroPdf));
-        document.open();
+
     }
 
     public void abrirDocumento() {
         creadorCarpeta();
         try {
             document = new Document(PageSize.A4);
+            escribirPdf = PdfWriter.getInstance(document, new FileOutputStream(ficheroPdf));
+            document.open();
         } catch (Exception e) {
             Log.e("abrirDocumento", e.toString());
 
@@ -44,7 +45,7 @@ public class PrespuestoEnPdf {
 
     private void creadorCarpeta() {
 
-        File carpeta = new File(Environment.getExternalStorageDirectory().toString(), "PresuReformsPDF");
+        File carpeta = new File(Environment.getExternalStorageDirectory().toString(), "pressReformsPDF");
 
         if (!carpeta.exists()) {
             carpeta.mkdirs();

@@ -1,5 +1,6 @@
 package com.example.presureforms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,8 +25,8 @@ public class MenuPresupuestos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
 
+        btnActualizar =(Button)findViewById(R.id.btnActualizarPrespuesto);
 
-        try {
             prespuestoEnPdf = new PrespuestoEnPdf(getApplicationContext());
             prespuestoEnPdf.abrirDocumento();
             prespuestoEnPdf.crearMetadatos("Clientes", "ventas", "autor");
@@ -34,16 +35,19 @@ public class MenuPresupuestos extends AppCompatActivity {
             prespuestoEnPdf.agregarParrafo(shortTExt);
             prespuestoEnPdf.agregarParrafo(longText);
             prespuestoEnPdf.cerrarDocumento();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
+/*
+            btnActualizar.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
 
 
     }
+});*/
+    }
 
     public void visorPDF(View view) {
+
         prespuestoEnPdf.verPDF();
 
     }
