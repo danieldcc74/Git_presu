@@ -76,7 +76,7 @@
             android:layout_height="match_parent">
         <Button
                 android:onClick="visorPDF"
-                android:id="@+id/btnActualizarPrespuesto"
+
                 android:text=" actualizar presupuesto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

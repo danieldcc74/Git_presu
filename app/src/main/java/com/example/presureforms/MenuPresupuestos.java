@@ -25,7 +25,7 @@ public class MenuPresupuestos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
 
-        btnActualizar =(Button)findViewById(R.id.btnActualizarPrespuesto);
+       // btnActualizar =(Button)findViewById(R.id.btnActualizarPrespuesto);
 
             prespuestoEnPdf = new PrespuestoEnPdf(getApplicationContext());
             prespuestoEnPdf.abrirDocumento();

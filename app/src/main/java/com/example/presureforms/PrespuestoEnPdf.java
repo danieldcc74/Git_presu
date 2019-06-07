@@ -31,7 +31,7 @@ public class PrespuestoEnPdf {
     }
 
     public void abrirDocumento() {
-        creadorCarpeta();
+        creadorFichero();
         try {
             document = new Document(PageSize.A4);
             escribirPdf = PdfWriter.getInstance(document, new FileOutputStream(ficheroPdf));
@@ -43,9 +43,9 @@ public class PrespuestoEnPdf {
 
     }
 
-    private void creadorCarpeta() {
+    private void creadorFichero() {
 
-        File carpeta = new File(Environment.getExternalStorageDirectory().toString(), "pressReformsPDF");
+        File carpeta = new File(Environment.getDataDirectory().toString(), "pressReformsPDF");
 
         if (!carpeta.exists()) {
             carpeta.mkdirs();
@@ -119,7 +119,7 @@ public class PrespuestoEnPdf {
             parrafo.add(tablaEmpresa);
             document.add(parrafo);
         } catch (Exception e) {
-            Log.e("crearTabla", e.toString());
+            //Log.e("crearTabla", e.toString());
 
         }
     }
@@ -131,7 +131,7 @@ public class PrespuestoEnPdf {
 
         } catch (Exception e) {
 
-            Log.e("agregarTitulos", e.toString());
+           // Log.e("agregarTitulos", e.toString());
 
         }
     }
