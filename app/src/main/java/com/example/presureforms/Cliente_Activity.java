@@ -13,6 +13,7 @@ public class Cliente_Activity extends AppCompatActivity {
 
     Button btnIrClienteAPresupuesto;
 
+    String textIDCliente, textNameCliente, textLastnameCliente, textDomCliente, textLoCliente, textCpCliente;
     EditText idCliente, nameCliente, lastnameCliente, domCliente, loCliente, cpCliente;
 
     @Override
@@ -30,12 +31,31 @@ public class Cliente_Activity extends AppCompatActivity {
         btnIrClienteAPresupuesto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent siguiente = new Intent(Cliente_Activity.this, Presupuesto_Activity.class);
+                Intent siguiente = new Intent(Cliente_Activity.this, MenuPresupuestos.class);
                 startActivity(siguiente);
+                 textIDCliente = idCliente.getText().toString();
+                 textNameCliente = nameCliente.getText().toString();
+                 textLastnameCliente = lastnameCliente.getText().toString();
+                 textDomCliente = domCliente.getText().toString();
+                 textLoCliente = loCliente.getText().toString();
+                 textCpCliente = cpCliente.getText().toString();
+
+                 siguiente.putExtra("dato", textIDCliente);
+                 siguiente.putExtra("dato1", textNameCliente);
+                 siguiente.putExtra("dato2", textLastnameCliente);
+                 siguiente.putExtra("dato3", textDomCliente);
+                 siguiente.putExtra("dato4", textLoCliente);
+                 siguiente.putExtra("dato5", textCpCliente);
+
+
+                startActivity(siguiente);
+
+
             }
         });
 
 
     }
+
 }
 

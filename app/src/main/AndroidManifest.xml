@@ -14,14 +14,8 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".VerFicheroPDF">
-        </activity>
         <activity android:name=".MenuPresupuestos">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".Presupuesto_Activity">
         </activity>
@@ -30,6 +24,11 @@
         <activity android:name=".Lanzador_Activity">
         </activity>
         <activity android:name=".Cliente_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
