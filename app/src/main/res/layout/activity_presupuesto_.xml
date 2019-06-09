@@ -56,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
+                        android:id="@+id/titulodescripcion"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textSize="20sp"
@@ -74,92 +75,27 @@
                         android:hint="Encargado de la reforma"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
-                <TextView
-                        android:textStyle="bold"
-                        android:text="Modo de pago"
+
+                  <EditText
+                          android:hint="Modo de pago"
+                          android:id="@+id/modoPago"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
+
+
+
+
+               <EditText
+                       android:hint="¿Es necesario licencia de obra?"
+                       android:id="@+id/licencia"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+                <EditText
+                       android:id="@+id/CantidadTrabajadores"
+                        android:hint="¿Cuántos trabajadores hacen falta?"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                <RadioGroup
-                        android:id="@+id/rgButton1"
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-                    <RadioButton
-                            android:id="@+id/rgEfectivo"
-                            android:hint="Efectivo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rgTranferencia"
-                            android:hint="Tranferencia bancaria"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </RadioGroup>
-                <TextView
-                        android:textStyle="bold"
-                        android:text="¿Es necesario licencia de obra?"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <RadioGroup
-                        android:id="@+id/rgButton2"
-                        android:orientation="vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    <RadioButton
-                            android:id="@+id/rg2Si"
-                            android:hint="Si"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rg2No"
-                            android:hint="No"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </RadioGroup>
-                <TextView
-                        android:textStyle="bold"
-                        android:text="¿Cuántos trabajadores hacen falta?"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <RadioGroup
-                        android:id="@+id/rgNtrabajadadores"
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                    <RadioButton
-                            android:id="@+id/rgItem1"
-                            android:hint="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rgItem2"
-                            android:hint="2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rgItem3"
-                            android:hint="3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rgItem4"
-                            android:hint="4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rgItem5"
-                            android:hint="5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <RadioButton
-                            android:id="@+id/rgItemMas5"
-                            android:hint="Más de 5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </RadioGroup>
                 <EditText
                         android:id="@+id/precioTrabajadorDia"
                         android:inputType="number"
@@ -183,6 +119,12 @@
                         android:id="@+id/precioCobrar"
                         android:inputType="number"
                         android:hint="Precio sin IVA de la reforma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <EditText
+                        android:id="@+id/iva"
+                        android:inputType="number"
+                        android:hint="Porcentaje de IVA"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <Button
