@@ -86,6 +86,7 @@ public class MenuPresupuestos extends AppCompatActivity {
         //DATOS CLIENTE
         final String dato0, dato1, dato2, dato3, dato4, dato5;
 
+
         dato0 = bundleCliente.getString("dato");
         txtdato.setText("NIF/DNI/CIF: " + dato0);
         dato1 = bundleCliente.getString("dato1");
