@@ -1,6 +1,7 @@
 package com.example.presureforms;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,10 +13,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.lowagie.text.*;
-import com.lowagie.text.pdf.ColumnText;
+import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import harmony.java.awt.Color;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,35 +23,46 @@ import java.io.IOException;
 
 public class MenuPresupuestos extends AppCompatActivity {
 
-    TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5,datosClienteCabecera;
-    TextView txtdatoEmpresa, txtdato1Empresa, txtdato2Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa,datosEmpresaCabereza;
-    TextView etxtNumeroFactura,etxtFechaFactura;
-    TextView etxtdireccionReforma,etxtModoPago,etxtnombreEncargado,etxtLicencia,etxtprecioTrabajadores,etxtNumTrabajadores,etxtDiasFinalizar, etxtprecioGasto,etxtprecioCobrar,etxtIVA;
 
+    TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5, datosClienteCabecera;
+    TextView txtdatoEmpresa, txtdato1Empresa, txtdato2Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa, datosEmpresaCabereza;
+    TextView etxtNumeroFactura, etxtFechaFactura;
+    TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtIVA;
 
+    String txtNumeroFactura, txtFechaFactura;
+    String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
+    String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
+    String dato0, dato1, dato2, dato3, dato4, dato5;
+    Bundle bundleEmpresa, bundleCliente, bundlePresupuesto;
     private final static String NOMBRE_DIRECTORIO = "Presupuestos";
     private final static String NOMBRE_DOCUMENTO = "factura.pdf";
     private final static String ETIQUETA_ERROR = "ERROR";
-    Button btnGenerar;
+
+    Button btnGenerar, btnCliente, btnEmpresa, btnPresupuesto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
 
+
+        bundleEmpresa = getIntent().getExtras();
+        bundleCliente = getIntent().getExtras();
+        bundlePresupuesto = getIntent().getExtras();
+
         //DECLARACION DE TEXTVIEW DEL XML DEL PRESUPUESTO
-        etxtNumeroFactura=(TextView)findViewById(R.id.facturaM);
-       etxtFechaFactura=(TextView)findViewById(R.id.fechaM);
-        etxtdireccionReforma=(TextView)findViewById(R.id.direccionM);
-        etxtnombreEncargado=(TextView)findViewById(R.id.encargadoM);
-        etxtModoPago=(TextView)findViewById(R.id.modoPagoM);
-       etxtLicencia=(TextView)findViewById(R.id.licenciaM);
-        etxtNumTrabajadores=(TextView)findViewById(R.id.cantidadTrabajadoresM);
-       etxtprecioTrabajadores=(TextView)findViewById(R.id.precioTrabajadorDiaM);
-        etxtDiasFinalizar=(TextView)findViewById(R.id.diasFinalizacionM);
-        etxtprecioGasto=(TextView)findViewById(R.id.precioGastoM);
-        etxtprecioCobrar=(TextView)findViewById(R.id.precioCobrarM);
-        etxtIVA=(TextView)findViewById(R.id.ivaM);
+        etxtNumeroFactura = (TextView) findViewById(R.id.facturaM);
+        etxtFechaFactura = (TextView) findViewById(R.id.fechaM);
+        etxtdireccionReforma = (TextView) findViewById(R.id.direccionM);
+        etxtnombreEncargado = (TextView) findViewById(R.id.encargadoM);
+        etxtModoPago = (TextView) findViewById(R.id.modoPagoM);
+        etxtLicencia = (TextView) findViewById(R.id.licenciaM);
+        etxtNumTrabajadores = (TextView) findViewById(R.id.cantidadTrabajadoresM);
+        etxtprecioTrabajadores = (TextView) findViewById(R.id.precioTrabajadorDiaM);
+        etxtDiasFinalizar = (TextView) findViewById(R.id.diasFinalizacionM);
+        etxtprecioGasto = (TextView) findViewById(R.id.precioGastoM);
+        etxtprecioCobrar = (TextView) findViewById(R.id.precioCobrarM);
+        etxtIVA = (TextView) findViewById(R.id.ivaM);
 
 
         //DECLARACION DE TEXTVIEW DEL XML DEL CLIENTE
@@ -73,87 +84,84 @@ public class MenuPresupuestos extends AppCompatActivity {
         datosEmpresaCabereza = (TextView) findViewById(R.id.datosEmpresaCabereza);
 
 
-
-        final String dato0, dato1, dato2, dato3, dato4, dato5;
-        Bundle bundle = getIntent().getExtras();
-
         //DATOS CLIENTE
-        dato0 = bundle.getString("dato");
+
+        dato0 = bundleCliente.getString("dato");
         txtdato.setText("NIF/DNI/CIF: " + dato0);
-        dato1 = bundle.getString("dato1");
-        txtdato1.setText("NOMBRE: " + dato1+" ");
-        dato2 = bundle.getString("dato2");
+        dato1 = bundleCliente.getString("dato1");
+        txtdato1.setText("NOMBRE: " + dato1+"   ");
+        dato2 = bundleCliente.getString("dato2");
         txtdato2.setText(dato2);
-        dato3 = bundle.getString("dato3");
+        dato3 = bundleCliente.getString("dato3");
         txtdato3.setText("DOMICILIO: " + dato3);
-        dato4 = bundle.getString("dato4");
+        dato4 = bundleCliente.getString("dato4");
         txtdato4.setText("LOCALIDAD: " + dato4);
-        dato5 = bundle.getString("dato5");
+        dato5 = bundleCliente.getString("dato5");
         txtdato5.setText("CODIGO POSTAL: " + dato5);
 
 
-        final String dato0Empresa,dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
-
         //DATOS EMPRESA
-        dato0Empresa = bundle.getString("idEmpresa");
+        dato0Empresa = bundleEmpresa.getString("idEmpresa");
         txtdatoEmpresa.setText("NIF/DNI/CIF: " + dato0Empresa);
-        dato1Empresa = bundle.getString("nameEmpresa");
+        dato1Empresa = bundleEmpresa.getString("nameEmpresa");
         txtdato1Empresa.setText("NOMBRE EMPRESA O PARTICULAR: " + dato1Empresa);
-        dato3Empresa = bundle.getString("domEmpresa");
+        dato3Empresa = bundleEmpresa.getString("domEmpresa");
         txtdato3Empresa.setText("DOMICILIO: " + dato3Empresa);
-        dato4Empresa = bundle.getString("loEmpresa");
+        dato4Empresa = bundleEmpresa.getString("loEmpresa");
         txtdato4Empresa.setText("LOCALIDAD: " + dato4Empresa);
-        dato5Empresa = bundle.getString("cpEmpresa");
+        dato5Empresa = bundleEmpresa.getString("cpEmpresa");
         txtdato5.setText("CODIGO POSTAL: " + dato5Empresa);
 
-        final String txtNumeroFactura,txtFechaFactura;
-        final String txtModoPago,txtdireccionReforma,txtnombreEncargado,txtLicencia,txtprecioTrabajadores,txtNumTrabajadores,txtDiasFinalizar, txtprecioGasto,txtprecioCobrar,txtIVA;
+//DATOS PRESUPUESTO
 
-        txtNumeroFactura = bundle.getString("numeroFactura");
+        txtNumeroFactura = bundlePresupuesto.getString("numeroFactura");
         etxtNumeroFactura.setText("Número de factura: " + txtNumeroFactura);
 
-        txtFechaFactura = bundle.getString("fechaFactura");
+        txtFechaFactura = bundlePresupuesto.getString("fechaFactura");
         etxtFechaFactura.setText("Fecha de facturación " + txtFechaFactura);
 
-        txtdireccionReforma = bundle.getString("direccionReforma");
+        txtdireccionReforma = bundlePresupuesto.getString("direccionReforma");
         etxtdireccionReforma.setText("Direccion de la reforma: " + txtdireccionReforma);
 
-        txtnombreEncargado = bundle.getString("nombreEncargado");
+        txtnombreEncargado = bundlePresupuesto.getString("nombreEncargado");
         etxtnombreEncargado.setText("Nombre del encargado: " + txtnombreEncargado);
 
-        txtModoPago= bundle.getString("modoPago");
+        txtModoPago = bundlePresupuesto.getString("modoPago");
         etxtModoPago.setText("Direccion de la reforma: " + txtModoPago);
 
-        txtLicencia = bundle.getString("licencia");
+        txtLicencia = bundlePresupuesto.getString("licencia");
         etxtLicencia.setText("Licencia: " + txtLicencia);
 
-        txtNumTrabajadores = bundle.getString("numTrabajadores");
+        txtNumTrabajadores = bundlePresupuesto.getString("numTrabajadores");
         etxtNumTrabajadores.setText("Cantidad de trabajadores necesarios: " + txtNumTrabajadores);
 
-        txtprecioTrabajadores = bundle.getString("precioTrabajador");
+        txtprecioTrabajadores = bundlePresupuesto.getString("precioTrabajador");
         etxtprecioTrabajadores.setText("Precio del trabajador por dia: " + txtprecioTrabajadores);
 
-        txtDiasFinalizar = bundle.getString("diasFinalizacion");
+        txtDiasFinalizar = bundlePresupuesto.getString("diasFinalizacion");
         etxtDiasFinalizar.setText("Cantidad de dias en terminar la obra: " + txtDiasFinalizar);
 
-        txtprecioCobrar = bundle.getString("precioAcobrar");
+        txtprecioCobrar = bundlePresupuesto.getString("precioAcobrar");
         etxtprecioCobrar.setText("¿Precio a cobrar?: " + txtprecioCobrar);
 
-        txtprecioGasto = bundle.getString("precioAgastar");
+        txtprecioGasto = bundlePresupuesto.getString("precioAgastar");
         etxtprecioGasto.setText("¿Cuánto se va a invertir en la obra?: " + txtprecioGasto);
 
-        txtIVA = bundle.getString("iva");
+        txtIVA = bundlePresupuesto.getString("iva");
         etxtIVA.setText("Porcentaje de IVA: " + txtIVA);
-
 
 
         // Permisos.
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
-        } else {
         }
         // Generaremos el documento al hacer click sobre el boton.
         btnGenerar = (Button) findViewById(R.id.btn_generar_pdf);
+        btnCliente = (Button) findViewById(R.id.btnRellenarCliente);
+        btnEmpresa = (Button) findViewById(R.id.btnRellenarEmpresa);
+        btnPresupuesto = (Button) findViewById(R.id.btnRellenaPresu);
+
+
         btnGenerar.setOnClickListener(new View.OnClickListener() {
 
 
@@ -166,7 +174,32 @@ public class MenuPresupuestos extends AppCompatActivity {
 
         });
 
+        btnCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent clienteActivity = new Intent(MenuPresupuestos.this, Cliente_Activity.class);
+                startActivity(clienteActivity);
+
+            }
+        });
+
+        btnEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent empresaActivity = new Intent(MenuPresupuestos.this, Empresa_Activity.class);
+                startActivity(empresaActivity);
+            }
+        });
+        btnPresupuesto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent presuActivity = new Intent(MenuPresupuestos.this, Presupuesto_Activity.class);
+                startActivity(presuActivity);
+            }
+        });
     }
+
 
     public void generarPdf() {
 
@@ -183,44 +216,90 @@ public class MenuPresupuestos extends AppCompatActivity {
                     f.getAbsolutePath());
 
             // Asociamos el flujo que acabamos de crear al documento.
-            PdfWriter writer = PdfWriter.getInstance(documento, ficheroPdf);
+            PdfWriter escribir = PdfWriter.getInstance(documento, ficheroPdf);
 
             // Incluimos el pie de pagina y una cabecera
-            HeaderFooter cabeceraEmpresa = new HeaderFooter(new Phrase(
-                    datosEmpresaCabereza+"\n"+txtdatoEmpresa + "\n" + txtdato1Empresa + " " + txtdato2Empresa + "\n" + txtdato3Empresa + "\n" + txtdato4Empresa + "\n" + txtdato5Empresa), false);
+           /* HeaderFooter cabeceraEmpresa = new HeaderFooter(new Phrase(
+                    datosEmpresaCabereza + "\n" + txtdatoEmpresa + "\n" + txtdato1Empresa + " " + txtdato2Empresa + "\n" + txtdato3Empresa + "\n" + txtdato4Empresa + "\n" + txtdato5Empresa), false);
             HeaderFooter cabeceraCliente = new HeaderFooter(new Phrase(
-                    datosClienteCabecera+"\n"+txtdato + "\n" + txtdato1 + " " + txtdato2 + "\n" + txtdato3 + "\n" + txtdato4 + "\n" + txtdato5), false);
+                    datosClienteCabecera + "\n" + txtdato + "\n" + txtdato1 + " " + txtdato2 + "\n" + txtdato3 + "\n" + txtdato4 + "\n" + txtdato5), false);
             HeaderFooter cabeceraPresupuesto = new HeaderFooter(new Phrase(
-                    etxtNumeroFactura+"\n"+etxtFechaFactura), false);
+                    etxtNumeroFactura + "\n" + etxtFechaFactura), false);
+            //  documento.setPageSize(A4);
             documento.setHeader(cabeceraEmpresa);
             documento.setHeader(cabeceraCliente);
-            documento.setHeader(cabeceraPresupuesto);
-        //    documento.setFooter(pie);
+            documento.setHeader(cabeceraPresupuesto);*/
+            // documento.setFooter(pie);
 
             // Abrimos el documento.
             documento.open();
 
             // Añadimos un titulo con la fuente por defecto.
-            documento.add(new Paragraph("Titulo 1"));
 
-            Font font = FontFactory.getFont(FontFactory.HELVETICA, 28,
-                    Font.BOLD, Color.RED);
-            documento.add(new Paragraph("Titulo personalizado", font));
+            Font font = FontFactory.getFont(FontFactory.HELVETICA, 20,
+                    Font.BOLD);
 
-            // Insertamos una tabla.
-            PdfPTable tabla = new PdfPTable(5);
-            for (int i = 0; i < 15; i++) {
-                tabla.addCell("Celda " + i);
-            }
-            documento.add(tabla);
+            PdfPTable tablaCabeceraEmpresa = new PdfPTable(1);
+
+            tablaCabeceraEmpresa.addCell(String.valueOf(txtdatoEmpresa));
+            tablaCabeceraEmpresa.addCell(String.valueOf(txtdato1Empresa));
+            tablaCabeceraEmpresa.addCell(String.valueOf(txtdato2Empresa));
+            tablaCabeceraEmpresa.addCell(String.valueOf(txtdato3Empresa));
+            tablaCabeceraEmpresa.addCell(String.valueOf(txtdato4Empresa));
+            tablaCabeceraEmpresa.addCell(String.valueOf(txtdato5Empresa));
+
+            PdfPTable tablaCabeceraCliente = new PdfPTable(1);
+
+            tablaCabeceraCliente.addCell(String.valueOf(dato0));
+            tablaCabeceraCliente.addCell(String.valueOf(dato1));
+            tablaCabeceraCliente.addCell(String.valueOf(dato2));
+            tablaCabeceraCliente.addCell(String.valueOf(dato3));
+            tablaCabeceraCliente.addCell(String.valueOf(dato4));
+            tablaCabeceraCliente.addCell(String.valueOf(dato5));
+            tablaCabeceraCliente.setSpacingAfter(10);
+            tablaCabeceraCliente.setSpacingBefore(10);
+            documento.add(new Paragraph("DETALLES DEL TRABAJO", font));
+
+
+            PdfPTable tablaPrincipal = new PdfPTable(1);
+            tablaPrincipal.setSpacingAfter(10);
+
+
+            PdfPTable celdatotalObra = new PdfPTable(1);
+
+            double precioObra = Double.parseDouble(txtprecioCobrar);
+            double ivaObra = Double.parseDouble(txtIVA);
+            double totalIVa = precioObra * ivaObra / 100;
+            double totalNeto = precioObra + totalIVa;
+            String totalnetoString = String.valueOf(totalNeto);
+
+            celdatotalObra.addCell(txtdireccionReforma);
+            celdatotalObra.addCell("Total Bruto: " + txtprecioCobrar);
+            celdatotalObra.addCell("IVA: " + txtIVA + ": " + totalIVa);
+            celdatotalObra.addCell("Total Neto:" + totalnetoString);
+
+            PdfPCell celdaFinal = new PdfPCell(new Paragraph("Final de la tabla"));
+
+            // Indicamos cuantas columnas ocupa la celda
+            celdaFinal.setColspan(1);
+            tablaPrincipal.addCell(celdaFinal);
+
+
+            documento.add(tablaCabeceraEmpresa);
+            documento.add(tablaCabeceraCliente);
+            documento.add(tablaPrincipal);
+            documento.add(celdaFinal);
+
+
+            documento.close();
 
             // Agregar marca de agua
-            font = FontFactory.getFont(FontFactory.HELVETICA, 42, Font.BOLD,
+            /*font = FontFactory.getFont(FontFactory.HELVETICA, 42, Font.BOLD,
                     Color.GRAY);
-            ColumnText.showTextAligned(writer.getDirectContentUnder(),
+            ColumnText.showTextAligned(escribir.getDirectContentUnder(),
                     Element.ALIGN_CENTER, new Paragraph(
                             "", font), 297.5f, 421,
-                    writer.getPageNumber() % 2 == 1 ? 45 : -45);
+                    escribir.getPageNumber() % 2 == 1 ? 45 : -45);*/
 
         } catch (DocumentException e) {
 
@@ -245,11 +324,6 @@ public class MenuPresupuestos extends AppCompatActivity {
         return fichero;
     }
 
-    /**
-     * Obtenemos la ruta donde vamos a almacenar el fichero.
-     *
-     * @return
-     */
     public static File getRuta() {
 
         // El fichero sera almacenado en un directorio dentro del directorio

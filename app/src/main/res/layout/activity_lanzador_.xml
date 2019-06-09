@@ -8,18 +8,10 @@
         android:orientation="vertical"
         tools:context=".Lanzador_Activity">
 
-    <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <TextView
-                android:gravity="center"
-                android:text="Lanzador principal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-    </LinearLayout>
-
+    <ImageView android:id="@+id/iconolanzador"
+               android:layout_width="wrap_content"
+               android:layout_height="fill_parent"
+               android:src="@drawable/ic_launcher_background"
+               android:layout_gravity="center"/>
 
 </LinearLayout>

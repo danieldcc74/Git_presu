@@ -6,164 +6,207 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="5sp"
+
         tools:context=".MenuPresupuestos">
 
     <ScrollView
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            <TextView
-                    android:id="@+id/datosClienteCabereza"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Datos Cliente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/dato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                <TextView
-                        android:id="@+id/dato1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <TextView
-                        android:layout_toRightOf="@+id/dato1"
-                        android:id="@+id/dato2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-            </RelativeLayout>
-
-            <TextView
-                    android:id="@+id/dato3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/dato4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/dato5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            <View
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="5dp"
-                    android:background="@android:color/black"/>
-
-
-            <TextView
-                    android:id="@+id/datosEmpresaCabereza"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Datos Empresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/datoEmpresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/dato1Empresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/dato3Empresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/dato4Empresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/dato5Empresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <View
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="5dp"
-                    android:background="@android:color/black"/>
-
-            <TextView
-                    android:id="@+id/datosPresupuestoCabecera"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="Datos del trabajo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/facturaM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/fechaM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-            <TextView
-                    android:id="@+id/direccionM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/encargadoM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-
-                    android:id="@+id/modoPagoM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/licenciaM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/cantidadTrabajadoresM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/precioTrabajadorDiaM"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/diasFinalizacionM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/precioGastoM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/precioCobrarM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/ivaM"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-
-
-            <Button
-                    android:id="@+id/btn_generar_pdf"
-                    android:text=" actualizar presupuesto"
+            <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent">
 
 
+                <Button
+                        android:id="@+id/btnRellenarCliente"
+                        android:text="Rellenar datos del cliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <Button
+                        android:id="@+id/btnRellenarEmpresa"
+                        android:text=" Rellenar datos de la Empresa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <Button
+                        android:id="@+id/btnRellenaPresu"
+                        android:text="Rellenar datos del presupuesto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
+                <Button
+                        android:id="@+id/btn_generar_pdf"
+                        android:text=" Generar factura"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/layoutCliente"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:id="@+id/datosClienteCabereza"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Datos Cliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/dato"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:id="@+id/dato1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    <TextView
+                            android:layout_toRightOf="@+id/dato1"
+                            android:id="@+id/dato2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <TextView
+                        android:id="@+id/dato3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/dato4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/dato5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/layoutEmpresa"
+
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <View
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="5dp"
+                        android:background="@android:color/black"/>
+
+
+                <TextView
+                        android:id="@+id/datosEmpresaCabereza"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Datos Empresa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/datoEmpresa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/dato1Empresa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/dato3Empresa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/dato4Empresa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/dato5Empresa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:id="@+id/layoutPresupuesto"
+
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                <View
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="5dp"
+                        android:background="@android:color/black"/>
+
+
+                <TextView
+                        android:id="@+id/datosPresupuestoCabecera"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Datos del trabajo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/facturaM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/fechaM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/direccionM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/encargadoM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+
+                        android:id="@+id/modoPagoM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/licenciaM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/cantidadTrabajadoresM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/precioTrabajadorDiaM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/diasFinalizacionM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/precioGastoM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/precioCobrarM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:id="@+id/ivaM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
 
         </LinearLayout>
 

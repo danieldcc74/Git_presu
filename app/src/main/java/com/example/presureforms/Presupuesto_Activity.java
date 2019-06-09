@@ -16,7 +16,7 @@ public class Presupuesto_Activity extends AppCompatActivity {
 
     EditText nfacturaPresu,fechaPresu;
    EditText direcionReformaPresu,encargadoPresu,licenciaPresu,cantidadTrabajadoresPresu,precioTrabajadorDiaPresu,diasFinalizacionPresu,precioGastoPresu,precioCobrarPresu,ivaPresu ;
-
+    Bundle bundleEmpresaFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,6 @@ public class Presupuesto_Activity extends AppCompatActivity {
         siguiente.putExtra("precioAgastar", txtprecioGasto);
         siguiente.putExtra("precioAcobrar", txtprecioCobrar);
         siguiente.putExtra("iva", txtIVA);
-
 
         startActivity(siguiente);
     }
