@@ -29,21 +29,20 @@ public class MenuPresupuestos extends AppCompatActivity {
     TextView etxtNumeroFactura, etxtFechaFactura;
     TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtIVA;
 
-    String txtNumeroFactura, txtFechaFactura;
-    String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
-    String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
-    String dato0, dato1, dato2, dato3, dato4, dato5;
-    Bundle bundleEmpresa, bundleCliente, bundlePresupuesto;
+
     private final static String NOMBRE_DIRECTORIO = "Presupuestos";
     private final static String NOMBRE_DOCUMENTO = "factura.pdf";
     private final static String ETIQUETA_ERROR = "ERROR";
-
+    Bundle bundleEmpresa, bundleCliente, bundlePresupuesto;
     Button btnGenerar, btnCliente, btnEmpresa, btnPresupuesto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
+
+
+
 
 
         bundleEmpresa = getIntent().getExtras();
@@ -85,11 +84,12 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
         //DATOS CLIENTE
+        final String dato0, dato1, dato2, dato3, dato4, dato5;
 
         dato0 = bundleCliente.getString("dato");
         txtdato.setText("NIF/DNI/CIF: " + dato0);
         dato1 = bundleCliente.getString("dato1");
-        txtdato1.setText("NOMBRE: " + dato1+"   ");
+        txtdato1.setText("NOMBRE: " + dato1 + "   ");
         dato2 = bundleCliente.getString("dato2");
         txtdato2.setText(dato2);
         dato3 = bundleCliente.getString("dato3");
@@ -101,6 +101,8 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
         //DATOS EMPRESA
+        String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
+
         dato0Empresa = bundleEmpresa.getString("idEmpresa");
         txtdatoEmpresa.setText("NIF/DNI/CIF: " + dato0Empresa);
         dato1Empresa = bundleEmpresa.getString("nameEmpresa");
@@ -113,6 +115,8 @@ public class MenuPresupuestos extends AppCompatActivity {
         txtdato5.setText("CODIGO POSTAL: " + dato5Empresa);
 
 //DATOS PRESUPUESTO
+        String txtNumeroFactura, txtFechaFactura;
+        String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
         txtNumeroFactura = bundlePresupuesto.getString("numeroFactura");
         etxtNumeroFactura.setText("Número de factura: " + txtNumeroFactura);
@@ -217,19 +221,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 
             // Asociamos el flujo que acabamos de crear al documento.
             PdfWriter escribir = PdfWriter.getInstance(documento, ficheroPdf);
-
-            // Incluimos el pie de pagina y una cabecera
-           /* HeaderFooter cabeceraEmpresa = new HeaderFooter(new Phrase(
-                    datosEmpresaCabereza + "\n" + txtdatoEmpresa + "\n" + txtdato1Empresa + " " + txtdato2Empresa + "\n" + txtdato3Empresa + "\n" + txtdato4Empresa + "\n" + txtdato5Empresa), false);
-            HeaderFooter cabeceraCliente = new HeaderFooter(new Phrase(
-                    datosClienteCabecera + "\n" + txtdato + "\n" + txtdato1 + " " + txtdato2 + "\n" + txtdato3 + "\n" + txtdato4 + "\n" + txtdato5), false);
-            HeaderFooter cabeceraPresupuesto = new HeaderFooter(new Phrase(
-                    etxtNumeroFactura + "\n" + etxtFechaFactura), false);
-            //  documento.setPageSize(A4);
-            documento.setHeader(cabeceraEmpresa);
-            documento.setHeader(cabeceraCliente);
-            documento.setHeader(cabeceraPresupuesto);*/
-            // documento.setFooter(pie);
 
             // Abrimos el documento.
             documento.open();
