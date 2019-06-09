@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
@@ -22,6 +23,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MenuPresupuestos extends AppCompatActivity {
+    String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
+
+    String dato0, dato1, dato2, dato3, dato4, dato5;
+
+    String txtNumeroFactura, txtFechaFactura;
+    String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
 
     TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5, datosClienteCabecera;
@@ -30,9 +37,9 @@ public class MenuPresupuestos extends AppCompatActivity {
     TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtIVA;
 
 
-    private final static String NOMBRE_DIRECTORIO = "Presupuestos";
-    private final static String NOMBRE_DOCUMENTO = "factura.pdf";
-    private final static String ETIQUETA_ERROR = "ERROR";
+    private final static String CARPETA = "Presupuestos";
+    private final static String FICHERO = "factura.pdf";
+    private final static String ERROR = "ERROR";
     Bundle bundleEmpresa, bundleCliente, bundlePresupuesto;
     Button btnGenerar, btnCliente, btnEmpresa, btnPresupuesto;
 
@@ -40,9 +47,6 @@ public class MenuPresupuestos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
-
-
-
 
 
         bundleEmpresa = getIntent().getExtras();
@@ -84,7 +88,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
         //DATOS CLIENTE
-        final String dato0, dato1, dato2, dato3, dato4, dato5;
 
 
         dato0 = bundleCliente.getString("dato");
@@ -102,7 +105,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
         //DATOS EMPRESA
-        String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
 
         dato0Empresa = bundleEmpresa.getString("idEmpresa");
         txtdatoEmpresa.setText("NIF/DNI/CIF: " + dato0Empresa);
@@ -116,8 +118,6 @@ public class MenuPresupuestos extends AppCompatActivity {
         txtdato5.setText("CODIGO POSTAL: " + dato5Empresa);
 
 //DATOS PRESUPUESTO
-        String txtNumeroFactura, txtFechaFactura;
-        String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
         txtNumeroFactura = bundlePresupuesto.getString("numeroFactura");
         etxtNumeroFactura.setText("Número de factura: " + txtNumeroFactura);
@@ -213,7 +213,7 @@ public class MenuPresupuestos extends AppCompatActivity {
 
         try {
 
-            File f = crearFichero(NOMBRE_DOCUMENTO);
+            File f = crearFichero(FICHERO);
 
             // Creamos el flujo de datos de salida para el fichero donde
             // guardaremos el pdf.
@@ -228,7 +228,7 @@ public class MenuPresupuestos extends AppCompatActivity {
 
             // Añadimos un titulo con la fuente por defecto.
 
-            Font font = FontFactory.getFont(FontFactory.HELVETICA, 20,
+            Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 20,
                     Font.BOLD);
 
             PdfPTable tablaCabeceraEmpresa = new PdfPTable(1);
@@ -295,11 +295,11 @@ public class MenuPresupuestos extends AppCompatActivity {
 
         } catch (DocumentException e) {
 
-            Log.e(ETIQUETA_ERROR, e.getMessage());
+            Log.e(ERROR, e.getMessage());
 
         } catch (IOException e) {
 
-            Log.e(ETIQUETA_ERROR, e.getMessage());
+            Log.e(ERROR, e.getMessage());
 
         } finally {
             // Cerramos el documento.
@@ -326,7 +326,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             ruta = new File(
                     Environment
                             .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                    NOMBRE_DIRECTORIO);
+                    CARPETA);
 
             if (ruta != null) {
                 if (!ruta.mkdirs()) {
