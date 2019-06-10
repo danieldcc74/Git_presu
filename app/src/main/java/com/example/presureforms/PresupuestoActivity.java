@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
 
-public class Presupuesto_Activity extends AppCompatActivity {
+public class PresupuestoActivity extends AppCompatActivity {
     String txtNumeroFactura,txtFechaFactura;
     String txtdireccionReforma,txtnombreEncargado,txtLicencia,txtNumTrabajadores,txtDiasFinalizar, txtprecioGasto,txtprecioCobrar,txtIVA;
     Button btnSiguienteGenerar;
@@ -50,7 +48,7 @@ public class Presupuesto_Activity extends AppCompatActivity {
         btnSiguienteGenerar.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Intent siguiente = new Intent(Presupuesto_Activity.this, MenuPresupuestos.class);
+        Intent siguiente = new Intent(PresupuestoActivity.this, MenuPresupuestos.class);
         startActivity(siguiente);
 
         txtNumeroFactura= nfacturaPresu.getText().toString();

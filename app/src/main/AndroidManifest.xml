@@ -17,19 +17,19 @@
         <activity android:name=".MenuPresupuestos">
 
         </activity>
-        <activity android:name=".Presupuesto_Activity">
+        <activity android:name=".PresupuestoActivity">
         </activity>
-        <activity android:name=".Empresa_Activity">
+        <activity android:name=".EmpresaActivity">
 
         </activity>
-        <activity android:name=".Lanzador_Activity">
+        <activity android:name=".LanzadorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Cliente_Activity">
+        <activity android:name=".ClienteActivity">
 
         </activity>
     </application>

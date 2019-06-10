@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Empresa_Activity extends AppCompatActivity {
+public class EmpresaActivity extends AppCompatActivity {
     Button btnEmpresaAlMenu;
     String textIDEmpresa, textNameEmpresa, textDomEmpresa, textLoEmpresa, textCpEmpresa;
     EditText idEmpresa, nameEmpresa, domEmpresa, loEmpresa, cpEmpresa;
@@ -15,7 +15,7 @@ public class Empresa_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_empresa_);
+        setContentView(R.layout.activityempresa_);
         Button btnEmpresaAlMenu = findViewById(R.id.btnSiguienteAlCliente);
 
         idEmpresa = (EditText) findViewById(R.id.identificacionEmpresa);
@@ -28,7 +28,7 @@ public class Empresa_Activity extends AppCompatActivity {
         btnEmpresaAlMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent siguiente = new Intent(Empresa_Activity.this, MenuPresupuestos.class);
+                Intent siguiente = new Intent(EmpresaActivity.this, MenuPresupuestos.class);
                 startActivity(siguiente);
                 textIDEmpresa = idEmpresa.getText().toString();
                 textNameEmpresa = nameEmpresa.getText().toString();

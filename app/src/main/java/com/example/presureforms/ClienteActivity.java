@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Cliente_Activity extends AppCompatActivity {
+public class ClienteActivity extends AppCompatActivity {
 
 
     Button btnIrClienteAPresupuesto;
@@ -18,7 +18,7 @@ public class Cliente_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cliente);
+        setContentView(R.layout.activitycliente);
         Button btnIrClienteAPresupuesto = findViewById(R.id.btnSiguienteAlPresupuesto);
         idCliente = (EditText) findViewById(R.id.identificacionCliente);
         nameCliente = (EditText) findViewById(R.id.nombreCliente);
@@ -30,7 +30,7 @@ public class Cliente_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent siguiente = new Intent(Cliente_Activity.this, MenuPresupuestos.class);
+                Intent siguiente = new Intent(ClienteActivity.this, MenuPresupuestos.class);
                 startActivity(siguiente);
                 textIDCliente = idCliente.getText().toString();
                 textNameCliente = nameCliente.getText().toString();

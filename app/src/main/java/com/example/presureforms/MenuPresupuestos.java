@@ -41,15 +41,15 @@ public class MenuPresupuestos extends AppCompatActivity {
     private final static String CARPETA = "Presupuestos";
     private final static String FICHERO = "factura.pdf";
     private final static String ERROR = "ERROR";
-    Bundle bundleEmpresa, bundleCliente, bundlePresupuesto;
+
     Button btnGenerar, btnCliente, btnEmpresa, btnPresupuesto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_presupuestos);
+        setContentView(R.layout.activitymenupresupuestos);
 
-
+        Bundle bundleEmpresa, bundleCliente, bundlePresupuesto;
         bundleEmpresa = getIntent().getExtras();
         bundleCliente = getIntent().getExtras();
         bundlePresupuesto = getIntent().getExtras();
@@ -184,7 +184,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent clienteActivity = new Intent(MenuPresupuestos.this, Cliente_Activity.class);
+                Intent clienteActivity = new Intent(MenuPresupuestos.this, ClienteActivity.class);
                 startActivity(clienteActivity);
 
             }
@@ -193,14 +193,14 @@ public class MenuPresupuestos extends AppCompatActivity {
         btnEmpresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent empresaActivity = new Intent(MenuPresupuestos.this, Empresa_Activity.class);
+                Intent empresaActivity = new Intent(MenuPresupuestos.this, EmpresaActivity.class);
                 startActivity(empresaActivity);
             }
         });
         btnPresupuesto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent presuActivity = new Intent(MenuPresupuestos.this, Presupuesto_Activity.class);
+                Intent presuActivity = new Intent(MenuPresupuestos.this, PresupuestoActivity.class);
                 startActivity(presuActivity);
             }
         });
