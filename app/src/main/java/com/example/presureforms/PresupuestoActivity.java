@@ -63,7 +63,7 @@ public class PresupuestoActivity extends AppCompatActivity {
         txtprecioCobrar= precioCobrarPresu.getText().toString();
         txtIVA= ivaPresu.getText().toString();
 
-
+        Bundle bundlePresupuesto = new Bundle();
         siguiente.putExtra("numeroFactura", txtNumeroFactura);
         siguiente.putExtra("fechaFactura", txtFechaFactura);
         siguiente.putExtra("direccionReforma", txtdireccionReforma);

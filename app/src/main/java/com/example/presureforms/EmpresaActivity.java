@@ -36,7 +36,7 @@ public class EmpresaActivity extends AppCompatActivity {
                 textLoEmpresa = loEmpresa.getText().toString();
                 textCpEmpresa = cpEmpresa.getText().toString();
 
-
+                Bundle bundleEmpresa = new Bundle();
                 siguiente.putExtra("idEmpresa", textIDEmpresa);
                 siguiente.putExtra("nameEmpresa", textNameEmpresa);
                 siguiente.putExtra("domEmpresa", textDomEmpresa);

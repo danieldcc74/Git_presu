@@ -32,6 +32,7 @@ public class ClienteActivity extends AppCompatActivity {
 
                 Intent siguiente = new Intent(ClienteActivity.this, MenuPresupuestos.class);
                 startActivity(siguiente);
+                Bundle bundleCliente = new Bundle();
                 textIDCliente = idCliente.getText().toString();
                 textNameCliente = nameCliente.getText().toString();
                 textLastnameCliente = lastnameCliente.getText().toString();
