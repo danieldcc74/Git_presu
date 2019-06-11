@@ -18,6 +18,7 @@ public class PresupuestoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle(R.string.nameActionPresupuesto);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presupuesto_);
         btnSiguienteGenerar=(Button)findViewById(R.id.btnSiguienteDescripcion);

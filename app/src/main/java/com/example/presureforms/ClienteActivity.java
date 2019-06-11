@@ -10,16 +10,18 @@ import android.widget.EditText;
 public class ClienteActivity extends AppCompatActivity {
 
 
-    Button btnIrClienteAPresupuesto;
+    public static Button btnIrClienteAPresupuesto;
 
-    String textIDCliente, textNameCliente, textLastnameCliente, textDomCliente, textLoCliente, textCpCliente;
+    public String textIDCliente, textNameCliente, textLastnameCliente, textDomCliente, textLoCliente, textCpCliente;
     EditText idCliente, nameCliente, lastnameCliente, domCliente, loCliente, cpCliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle(R.string.nameActionCliente);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitycliente);
         Button btnIrClienteAPresupuesto = findViewById(R.id.btnSiguienteAlPresupuesto);
+
         idCliente = (EditText) findViewById(R.id.identificacionCliente);
         nameCliente = (EditText) findViewById(R.id.nombreCliente);
         lastnameCliente = (EditText) findViewById(R.id.apellidosCliente);
@@ -32,7 +34,7 @@ public class ClienteActivity extends AppCompatActivity {
 
                 Intent siguiente = new Intent(ClienteActivity.this, MenuPresupuestos.class);
                 startActivity(siguiente);
-                Bundle bundleCliente = new Bundle();
+
                 textIDCliente = idCliente.getText().toString();
                 textNameCliente = nameCliente.getText().toString();
                 textLastnameCliente = lastnameCliente.getText().toString();
@@ -40,12 +42,12 @@ public class ClienteActivity extends AppCompatActivity {
                 textLoCliente = loCliente.getText().toString();
                 textCpCliente = cpCliente.getText().toString();
 
-                siguiente.putExtra("dato", textIDCliente);
-                siguiente.putExtra("dato1", textNameCliente);
-                siguiente.putExtra("dato2", textLastnameCliente);
-                siguiente.putExtra("dato3", textDomCliente);
-                siguiente.putExtra("dato4", textLoCliente);
-                siguiente.putExtra("dato5", textCpCliente);
+                siguiente.putExtra("idCliente", textIDCliente);
+                siguiente.putExtra("nombreCliente", textNameCliente);
+                siguiente.putExtra("apellidosCliente", textLastnameCliente);
+                siguiente.putExtra("domCliente", textDomCliente);
+                siguiente.putExtra("loCliente", textLoCliente);
+                siguiente.putExtra("cpCliente", textCpCliente);
 
                 startActivity(siguiente);
             }

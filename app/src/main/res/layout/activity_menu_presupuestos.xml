@@ -4,6 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/fondogeneral"
         android:orientation="vertical"
         android:padding="5sp"
 
@@ -153,7 +154,7 @@
                         android:id="@+id/datosPresupuestoCabecera"
                         android:textSize="20dp"
                         android:textStyle="bold"
-                        android:text="Datos del trabajo"
+                        android:text="Datos del presupuesto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 <TextView

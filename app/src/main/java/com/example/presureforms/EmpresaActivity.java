@@ -14,6 +14,7 @@ public class EmpresaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle(R.string.nameActionEmpresa);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activityempresa_);
         Button btnEmpresaAlMenu = findViewById(R.id.btnSiguienteAlCliente);

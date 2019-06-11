@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">PresuReforms</string>
     <string name="action_settings">Settings</string>
+    <string name="nameActionPrincipal">Menu principal</string>
+    <string name="nameActionCliente">Datos del cliente</string>
+    <string name="nameActionEmpresa">Datos de la empresa</string>
+    <string name="nameActionPresupuesto">Datos del presupuesto</string>
 </resources>

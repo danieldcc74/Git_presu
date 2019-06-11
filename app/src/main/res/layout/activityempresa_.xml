@@ -10,22 +10,9 @@
         tools:context=".EmpresaActivity">
 
 
-    <TextView
-            android:layout_marginTop="20sp"
-            android:layout_marginBottom="20sp"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:text="Datos de la empresa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <View
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="5dp"
-            android:background="@android:color/black"/>
+
     <LinearLayout
+            android:layout_marginTop="20sp"
             android:padding="5sp"
             android:orientation="vertical"
             android:layout_width="match_parent"

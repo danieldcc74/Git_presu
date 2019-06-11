@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -24,16 +25,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class MenuPresupuestos extends AppCompatActivity {
-    String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
 
-    String dato, dato1, dato2, dato3, dato4, dato5;
+    private static String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
+    private static  String dato0c, dato1c, dato2c, dato3c, dato4c, dato5c;
+    private static String txtNumeroFactura, txtFechaFactura;
+    private static String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
-    String txtNumeroFactura, txtFechaFactura;
-    String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
-
-
-    TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5, datosClienteCabecera;
-    TextView txtdatoEmpresa, txtdato1Empresa, txtdato2Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa, datosEmpresaCabereza;
+    //textos a mostrar del cliente
+    TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5;
+    //textos a mostrar de la empresa
+    TextView txtdatoEmpresa, txtdato1Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa;
+    //textos a mostrar del presupuesto
     TextView etxtNumeroFactura, etxtFechaFactura;
     TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtIVA;
 
@@ -41,17 +43,23 @@ public class MenuPresupuestos extends AppCompatActivity {
     private final static String CARPETA = "Presupuestos";
     private final static String FICHERO = "factura.pdf";
     private final static String ERROR = "ERROR";
-
+    public static Bundle bundleCliente ;
     Button btnGenerar, btnCliente, btnEmpresa, btnPresupuesto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
+        this.setTitle(R.string.nameActionPrincipal);
+
+        /*
+        String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;String dato0, dato1, dato2, dato3, dato4, dato5;
+        String txtNumeroFactura, txtFechaFactura;
+        String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
 
+        //Bundle bundleCliente = getIntent().getExtras();
         Bundle bundlePresupuesto = getIntent().getExtras();
-
 
         //DECLARACION DE TEXTVIEW DEL XML DEL CLIENTE
         txtdato = (TextView) findViewById(R.id.dato);
@@ -60,11 +68,14 @@ public class MenuPresupuestos extends AppCompatActivity {
         txtdato3 = (TextView) findViewById(R.id.dato3);
         txtdato4 = (TextView) findViewById(R.id.dato4);
         txtdato5 = (TextView) findViewById(R.id.dato5);
-        datosClienteCabecera = (TextView) findViewById(R.id.datosClienteCabereza);
 
+        //DECLARACION DE TEXTVIEW DEL XML DE LA EMPRESA
+        txtdatoEmpresa = (TextView) findViewById(R.id.datoEmpresa);
+        txtdato1Empresa = (TextView) findViewById(R.id.dato1Empresa);
+        txtdato3Empresa = (TextView) findViewById(R.id.dato3Empresa);
+        txtdato4Empresa = (TextView) findViewById(R.id.dato4Empresa);
+        txtdato5Empresa = (TextView) findViewById(R.id.dato5Empresa);
 
-
-/*
         //DECLARACION DE TEXTVIEW DEL XML DEL PRESUPUESTO
         etxtNumeroFactura = (TextView) findViewById(R.id.facturaM);
         etxtFechaFactura = (TextView) findViewById(R.id.fechaM);
@@ -78,58 +89,63 @@ public class MenuPresupuestos extends AppCompatActivity {
         etxtprecioGasto = (TextView) findViewById(R.id.precioGastoM);
         etxtprecioCobrar = (TextView) findViewById(R.id.precioCobrarM);
         etxtIVA = (TextView) findViewById(R.id.ivaM);
-*/
-        //DECLARACION DE TEXTVIEW DEL XML DE LA EMPRESA
-        txtdatoEmpresa = (TextView) findViewById(R.id.datoEmpresa);
-        txtdato1Empresa = (TextView) findViewById(R.id.dato1Empresa);
-        txtdato3Empresa = (TextView) findViewById(R.id.dato3Empresa);
-        txtdato4Empresa = (TextView) findViewById(R.id.dato4Empresa);
-        txtdato5Empresa = (TextView) findViewById(R.id.dato5Empresa);
-        datosEmpresaCabereza = (TextView) findViewById(R.id.datosEmpresaCabereza);
+
+bundleCliente = getIntent().getExtras();
+
+        dato0c = bundleCliente.getString("idCliente");
+        dato1c = bundleCliente.getString("nombreCliente");
+        dato2c = bundleCliente.getString("apellidosCliente");
+        dato3c = bundleCliente.getString("domCliente");
+        dato4c = bundleCliente.getString("loCliente");
+        dato5c = bundleCliente.getString("cpCliente");
+
+        txtdato.setText("NIF/DNI/CIF: " + dato0c);
+        txtdato1.setText("Nombre: " + dato1c + "   ");
+        txtdato2.setText(dato2c);
+        txtdato3.setText("Domicilio: " + dato3c);
+        txtdato4.setText("Localidad: " + dato4c);
+        txtdato5.setText("Código postal: " + dato5c);
 
 
-        //DATOS CLIENTE
+        // Datos Empresa con recogida de bundle de la empresa
+        dato0Empresa = bundleEmpresa.getString("idEmpresa");
+        dato1Empresa = bundleEmpresa.getString("nameEmpresa");
+        dato3Empresa = bundleEmpresa.getString("domEmpresa");
+        dato4Empresa = bundleEmpresa.getString("loEmpresa");
+        dato5Empresa = bundleEmpresa.getString("cpEmpresa");
+
+        txtdatoEmpresa.setText("NIF/DNI/CIF: " + dato0Empresa);
+        txtdato1Empresa.setText("Nombre: " + dato1Empresa);
+        txtdato3Empresa.setText("Domicilio: " + dato3Empresa);
+        txtdato4Empresa.setText("Localidad: " + dato4Empresa);
+        txtdato5Empresa.setText("Código postal: " + dato5Empresa);
 
 
-        //DATOS EMPRESA
+        // Datos Empresa con recogida de bundle de la empresa
+        txtFechaFactura = bundlePresupuesto.getString("fechaFactura");
+        txtdireccionReforma = bundlePresupuesto.getString("direccionReforma");
+        txtnombreEncargado = bundlePresupuesto.getString("nombreEncargado");
+        txtModoPago = bundlePresupuesto.getString("modoPago");
+        txtLicencia = bundlePresupuesto.getString("licencia");
+        txtNumTrabajadores = bundlePresupuesto.getString("numTrabajadores");
+        txtprecioTrabajadores = bundlePresupuesto.getString("precioTrabajador");
+        txtDiasFinalizar = bundlePresupuesto.getString("diasFinalizacion");
+        txtprecioCobrar = bundlePresupuesto.getString("precioAcobrar");
+        txtprecioGasto = bundlePresupuesto.getString("precioAgastar");
+        txtIVA = bundlePresupuesto.getString("iva");
 
-
-//DATOS PRESUPUESTO
-/*
         txtNumeroFactura = bundlePresupuesto.getString("numeroFactura");
         etxtNumeroFactura.setText("Número de factura: " + txtNumeroFactura);
-
-        txtFechaFactura = bundlePresupuesto.getString("fechaFactura");
         etxtFechaFactura.setText("Fecha de facturación " + txtFechaFactura);
-
-        txtdireccionReforma = bundlePresupuesto.getString("direccionReforma");
         etxtdireccionReforma.setText("Direccion de la reforma: " + txtdireccionReforma);
-
-        txtnombreEncargado = bundlePresupuesto.getString("nombreEncargado");
         etxtnombreEncargado.setText("Nombre del encargado: " + txtnombreEncargado);
-
-        txtModoPago = bundlePresupuesto.getString("modoPago");
         etxtModoPago.setText("Direccion de la reforma: " + txtModoPago);
-
-        txtLicencia = bundlePresupuesto.getString("licencia");
         etxtLicencia.setText("Licencia: " + txtLicencia);
-
-        txtNumTrabajadores = bundlePresupuesto.getString("numTrabajadores");
         etxtNumTrabajadores.setText("Cantidad de trabajadores necesarios: " + txtNumTrabajadores);
-
-        txtprecioTrabajadores = bundlePresupuesto.getString("precioTrabajador");
         etxtprecioTrabajadores.setText("Precio del trabajador por dia: " + txtprecioTrabajadores);
-
-        txtDiasFinalizar = bundlePresupuesto.getString("diasFinalizacion");
         etxtDiasFinalizar.setText("Cantidad de dias en terminar la obra: " + txtDiasFinalizar);
-
-        txtprecioCobrar = bundlePresupuesto.getString("precioAcobrar");
         etxtprecioCobrar.setText("¿Precio a cobrar?: " + txtprecioCobrar);
-
-        txtprecioGasto = bundlePresupuesto.getString("precioAgastar");
         etxtprecioGasto.setText("¿Cuánto se va a invertir en la obra?: " + txtprecioGasto);
-
-        txtIVA = bundlePresupuesto.getString("iva");
         etxtIVA.setText("Porcentaje de IVA: " + txtIVA);
 
 */
@@ -137,6 +153,8 @@ public class MenuPresupuestos extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
         }
+
+
         // Generaremos el documento al hacer click sobre el boton.
         btnGenerar = (Button) findViewById(R.id.btn_generar_pdf);
         btnCliente = (Button) findViewById(R.id.btnRellenarCliente);
@@ -161,12 +179,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent clienteActivity = new Intent(MenuPresupuestos.this, ClienteActivity.class);
-                txtdato.setText("NIF/DNI/CIF: " + dato);
-                txtdato1.setText("Nombre: " + dato1 + "   ");
-                txtdato2.setText(dato2);
-                txtdato3.setText("Domicilio: " + dato3);
-                txtdato4.setText("Localidad: " + dato4);
-                txtdato5.setText("Código postal: " + dato5);
+
                 startActivity(clienteActivity);
 
 
@@ -178,11 +191,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent empresaActivity = new Intent(MenuPresupuestos.this, EmpresaActivity.class);
-                txtdatoEmpresa.setText("NIF/DNI/CIF: " + dato0Empresa);
-                txtdato1Empresa.setText("Nombre empresa o particular: " + dato1Empresa);
-                txtdato3Empresa.setText("Domicilio: " + dato3Empresa);
-                txtdato4Empresa.setText("Localidad: " + dato4Empresa);
-                txtdato5Empresa.setText("Codigo postal: " + dato5Empresa);
+
                 startActivity(empresaActivity);
             }
         });
@@ -223,14 +232,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
             PdfPTable tablaCabeceraEmpresa = new PdfPTable(1);
-            Bundle bundleEmpresa = getIntent().getExtras();
-
-
-            dato0Empresa = bundleEmpresa.getString("idEmpresa");
-            dato1Empresa = bundleEmpresa.getString("nameEmpresa");
-            dato3Empresa = bundleEmpresa.getString("domEmpresa");
-            dato4Empresa = bundleEmpresa.getString("loEmpresa");
-            dato5Empresa = bundleEmpresa.getString("cpEmpresa");
 
 
             tablaCabeceraEmpresa.addCell(new Phrase("DATOS CLIENTE"));
@@ -241,22 +242,12 @@ public class MenuPresupuestos extends AppCompatActivity {
             tablaCabeceraEmpresa.addCell("Codigo postal: " + dato5Empresa);
 
             PdfPTable tablaCabeceraCliente = new PdfPTable(1);
-            Bundle bundleCliente = getIntent().getExtras();
-
-
-            dato = bundleCliente.getString("dato");
-            dato1 = bundleCliente.getString("dato1");
-            dato2 = bundleCliente.getString("dato2");
-            dato3 = bundleCliente.getString("dato3");
-            dato4 = bundleCliente.getString("dato4");
-            dato5 = bundleCliente.getString("dato5");
-
             tablaCabeceraCliente.addCell(new Phrase("DATOS CLIENTE"));
-            tablaCabeceraCliente.addCell("NIF/DNI/CIF: " + dato);
-            tablaCabeceraCliente.addCell("Nombre: " + dato1 + " " + dato2);
-            tablaCabeceraCliente.addCell("Domicilio: " + dato3);
-            tablaCabeceraCliente.addCell("Localidad: " + dato4);
-            tablaCabeceraCliente.addCell("Código postal: " + dato5);
+            tablaCabeceraCliente.addCell("NIF/DNI/CIF: " + dato0c);
+            tablaCabeceraCliente.addCell("Nombre: " + dato1c + " " + dato2c);
+            tablaCabeceraCliente.addCell("Domicilio: " + dato3c);
+            tablaCabeceraCliente.addCell("Localidad: " + dato4c);
+            tablaCabeceraCliente.addCell("Código postal: " + dato5c);
             tablaCabeceraCliente.setSpacingAfter(10);
             tablaCabeceraCliente.setSpacingBefore(10);
 
@@ -288,7 +279,7 @@ public class MenuPresupuestos extends AppCompatActivity {
 */
 
             documento.add(tablaCabeceraEmpresa);
-            documento.add(tablaCabeceraCliente);
+            //   documento.add(tablaCabeceraCliente);
             //   documento.add(tablaPrincipal);
             //   documento.add(celdaFinal);
 
