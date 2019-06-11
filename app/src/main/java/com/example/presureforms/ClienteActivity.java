@@ -33,7 +33,6 @@ public class ClienteActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent siguiente = new Intent(ClienteActivity.this, MenuPresupuestos.class);
-                startActivity(siguiente);
 
                 textIDCliente = idCliente.getText().toString();
                 textNameCliente = nameCliente.getText().toString();
