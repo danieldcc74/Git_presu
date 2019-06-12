@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class EmpresaActivity extends AppCompatActivity {
     Button btnEmpresaAlMenu;
-    String textIDEmpresa, textNameEmpresa, textDomEmpresa, textLoEmpresa, textCpEmpresa;
+   public static String textIDEmpresa, textNameEmpresa, textDomEmpresa, textLoEmpresa, textCpEmpresa;
     EditText idEmpresa, nameEmpresa, domEmpresa, loEmpresa, cpEmpresa, telefonoEmpresa,emailEmpresa;
 
     @Override

@@ -31,10 +31,11 @@ import java.io.IOException;
 
 public class MenuPresupuestos extends AppCompatActivity {
 
-    String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
-    String dato0c, dato1c, dato2c, dato3c, dato4c, dato5c;
-    String txtNumeroFactura, txtFechaFactura;
-    String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
+
+    public static String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
+    public static String dato0c, dato1c, dato2c, dato3c, dato4c, dato5c;
+    public static String txtNumeroFactura, txtFechaFactura;
+    public static String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
     //textos a mostrar del cliente
     TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5;
@@ -103,48 +104,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 */
     }
 
-    public void btnAltaCliente(View v) {
-
-        ClienteActivity clienteActivity = new ClienteActivity();
-        BaseDeDatos dbCliente = new BaseDeDatos(this, "Cliente", null, 1);
-
-        SQLiteDatabase clienteDataBase = dbCliente.getWritableDatabase();
-
-        String idClienteString = clienteActivity.idCliente.getText().toString();
-        String nameClienteString = clienteActivity.nameCliente.getText().toString();
-        String lastNamecliente = clienteActivity.lastnameCliente.getText().toString();
-        String domClienteString = clienteActivity.domCliente.getText().toString();
-        String loClienteString = clienteActivity.loCliente.getText().toString();
-        String cpClienteString = clienteActivity.cpCliente.getText().toString();
-        String telefonoClienteString = clienteActivity.tflCliente.getText().toString();
-        String emailClienteString = clienteActivity.emailCliente.getText().toString();
-
-        ContentValues registroCliente = new ContentValues();
-
-        registroCliente.put("dniCliente", idClienteString);
-        registroCliente.put("nombreCliente", nameClienteString);
-        registroCliente.put("apellidosCliente", lastNamecliente);
-        registroCliente.put("domicilioCliente", domClienteString);
-        registroCliente.put("localidadCliente", loClienteString);
-        registroCliente.put("codigopostalCliente", cpClienteString);
-        registroCliente.put("telefonoCliente", telefonoClienteString);
-        registroCliente.put("emailCliente", emailClienteString);
-
-
-        clienteDataBase.insert("tablaCliente", null, registroCliente);
-
-        clienteActivity.idCliente.setText("");
-        clienteActivity.nameCliente.setText("");
-        clienteActivity.lastnameCliente.setText("");
-        clienteActivity.domCliente.setText("");
-        clienteActivity.loCliente.setText("");
-        clienteActivity.cpCliente.setText("");
-        clienteActivity.tflCliente.setText("");
-        clienteActivity.emailCliente.setText("");
-        clienteDataBase.close();
-        Toast.makeText(this, "Se han guardado los datos del cliente", Toast.LENGTH_LONG).show();
-
-    }
 
     public void btnAltaEmpresa(View v) {
 
@@ -183,6 +142,7 @@ public class MenuPresupuestos extends AppCompatActivity {
         empresaActivity.emailEmpresa.setText("");
 
         empresaDataBase.close();
+
         Toast.makeText(this, "Se han guardado los datos de la empresa", Toast.LENGTH_LONG).show();
 
     }
@@ -241,10 +201,10 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
         presupuestoDataBase.close();
-        Toast.makeText(this, "Se han guardado los datos del presupuesto", Toast.LENGTH_LONG).show();
+        // Toast.makeText(ClienteActivity.this, "Se han guardado los datos del presupuesto", Toast.LENGTH_LONG).show();
 
     }
-
+/*
     public void btnMostrarDatos(View v) {
         ClienteActivity mostrarCliente = new ClienteActivity();
         BaseDeDatos consultarCliente = new BaseDeDatos(this, "cliente", null, 1);
@@ -260,7 +220,7 @@ public class MenuPresupuestos extends AppCompatActivity {
         String telefonoClienteString = mostrarCliente.tflCliente.getText().toString();
         String emailClienteString = mostrarCliente.emailCliente.getText().toString();
 */
-        Cursor filaCliente = bd.rawQuery("select *from cliente", null);
+      /*  Cursor filaCliente = bd.rawQuery("select *from cliente", null);
         if (filaCliente.moveToFirst()) {
 
             txtdato.setText(filaCliente.getString(0));
@@ -274,7 +234,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             Toast.makeText(this, "No has rellenado los datos cliente", Toast.LENGTH_LONG).show();
         }
     }
-
+*/
 
     public void generarPdf() {
 
