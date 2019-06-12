@@ -13,7 +13,7 @@ public class PresupuestoActivity extends AppCompatActivity {
     Button btnSiguienteGenerar;
 
     EditText nfacturaPresu,fechaPresu;
-   EditText direcionReformaPresu,encargadoPresu,licenciaPresu,cantidadTrabajadoresPresu,precioTrabajadorDiaPresu,diasFinalizacionPresu,precioGastoPresu,precioCobrarPresu,ivaPresu ;
+   EditText direcionReformaPresu,encargadoPresu,licenciaPresu,detallesTrabajo,cantidadTrabajadoresPresu,precioTrabajadorDiaPresu,diasFinalizacionPresu,precioGastoPresu,precioCobrarPresu,ivaPresu ;
     Bundle bundleEmpresaFinal;
 
     @Override
@@ -37,12 +37,12 @@ public class PresupuestoActivity extends AppCompatActivity {
         direcionReformaPresu=(EditText)findViewById(R.id.direccionReforma);
         encargadoPresu=(EditText)findViewById(R.id.encargado);
         licenciaPresu=(EditText)findViewById(R.id.licencia);
+        detallesTrabajo=(EditText)findViewById(R.id.detallesDelTrabajo);
         cantidadTrabajadoresPresu=(EditText)findViewById(R.id.encargado);
         precioTrabajadorDiaPresu=(EditText)findViewById(R.id.precioTrabajadorDia);
         diasFinalizacionPresu=(EditText)findViewById(R.id.diasFinalizacion);
         precioGastoPresu=(EditText)findViewById(R.id.precioGasto);
         precioCobrarPresu=(EditText)findViewById(R.id.precioCobrar);
-        precioGastoPresu=(EditText)findViewById(R.id.precioGasto);
         ivaPresu=(EditText)findViewById(R.id.iva);
 
 
@@ -51,7 +51,7 @@ public class PresupuestoActivity extends AppCompatActivity {
     public void onClick(View v) {
         Intent siguiente = new Intent(PresupuestoActivity.this, MenuPresupuestos.class);
         startActivity(siguiente);
-
+/*
         txtNumeroFactura= nfacturaPresu.getText().toString();
         txtFechaFactura= fechaPresu.getText().toString();
         txtdireccionReforma= direcionReformaPresu.getText().toString();
@@ -77,7 +77,7 @@ public class PresupuestoActivity extends AppCompatActivity {
         siguiente.putExtra("precioAgastar", txtprecioGasto);
         siguiente.putExtra("precioAcobrar", txtprecioCobrar);
         siguiente.putExtra("iva", txtIVA);
-
+*/
         startActivity(siguiente);
     }
 });

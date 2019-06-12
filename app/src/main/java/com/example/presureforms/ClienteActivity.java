@@ -13,7 +13,7 @@ public class ClienteActivity extends AppCompatActivity {
     public static Button btnIrClienteAPresupuesto;
 
     public String textIDCliente, textNameCliente, textLastnameCliente, textDomCliente, textLoCliente, textCpCliente;
-    EditText idCliente, nameCliente, lastnameCliente, domCliente, loCliente, cpCliente;
+    EditText idCliente, nameCliente, lastnameCliente, domCliente, loCliente, cpCliente, tflCliente,emailCliente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,14 @@ public class ClienteActivity extends AppCompatActivity {
         domCliente = (EditText) findViewById(R.id.domicilioCliente);
         loCliente = (EditText) findViewById(R.id.localidadCliente);
         cpCliente = (EditText) findViewById(R.id.codigoPostalCliente);
+        tflCliente = (EditText) findViewById(R.id.telefonoCliente);
+        emailCliente = (EditText) findViewById(R.id.correoCliente);
+
+
         btnIrClienteAPresupuesto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+/*
                 Intent siguiente = new Intent(ClienteActivity.this, MenuPresupuestos.class);
 
                 textIDCliente = idCliente.getText().toString();
@@ -49,6 +53,7 @@ public class ClienteActivity extends AppCompatActivity {
                 siguiente.putExtra("cpCliente", textCpCliente);
 
                 startActivity(siguiente);
+                */
             }
 
 

@@ -1,8 +1,13 @@
 package com.example.presureforms;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursorDriver;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
@@ -50,15 +55,11 @@ public class MenuPresupuestos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
-        this.setTitle(R.string.nameActionPrincipal);
-
-/*
-        String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
-        String dato0, dato1, dato2, dato3, dato4, dato5;
-        String txtNumeroFactura, txtFechaFactura;
-        String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
-*/
-
+        this.setTitle(R.string.nameActionPrincipal);// nombre de actionBar
+        // Permisos.
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
+        }
 
         Bundle bundlePresupuesto = getIntent().getExtras();
         Bundle bundleEmpresa = getIntent().getExtras();
@@ -92,127 +93,188 @@ public class MenuPresupuestos extends AppCompatActivity {
         etxtprecioGasto = (TextView) findViewById(R.id.precioGastoM);
         etxtprecioCobrar = (TextView) findViewById(R.id.precioCobrarM);
         etxtIVA = (TextView) findViewById(R.id.ivaM);
-        Bundle bundleCliente = getIntent().getExtras();
-
-        // Datos Empresa con recogida de bundle de la empresa
-        if (bundleCliente != null) {
-            dato0c = bundleCliente.getString("idCliente");
-            dato1c = bundleCliente.getString("nombreCliente");
-            dato2c = bundleCliente.getString("apellidosCliente");
-            dato3c = bundleCliente.getString("domCliente");
-            dato4c = bundleCliente.getString("loCliente");
-            dato5c = bundleCliente.getString("cpCliente");
-            if (txtdato == null) {
-                txtdato.setText("NIF/DNI/CIF: " + dato0c);
-                txtdato1.setText("Nombre: " + dato1c + "   ");
-                txtdato2.setText(dato2c);
-                txtdato3.setText("Domicilio: " + dato3c);
-                txtdato4.setText("Localidad: " + dato4c);
-                txtdato5.setText("Código postal: " + dato5c);
-            }
-        }
-        if (bundleEmpresa != null) {
-
-            dato0Empresa = bundleEmpresa.getString("idEmpresa");
-            dato1Empresa = bundleEmpresa.getString("nameEmpresa");
-            dato3Empresa = bundleEmpresa.getString("domEmpresa");
-            dato4Empresa = bundleEmpresa.getString("loEmpresa");
-            dato5Empresa = bundleEmpresa.getString("cpEmpresa");
-            if (txtdatoEmpresa == null) {
-                txtdatoEmpresa.setText("NIF/DNI/CIF: " + dato0Empresa);
-                txtdato1Empresa.setText("Nombre: " + dato1Empresa);
-                txtdato3Empresa.setText("Domicilio: " + dato3Empresa);
-                txtdato4Empresa.setText("Localidad: " + dato4Empresa);
-                txtdato5Empresa.setText("Código postal: " + dato5Empresa);
-            }
-        }
-        if (bundlePresupuesto != null) {
-            // Datos Empresa con recogida de bundle de la empresa
-            txtFechaFactura = bundlePresupuesto.getString("fechaFactura");
-            txtdireccionReforma = bundlePresupuesto.getString("direccionReforma");
-            txtnombreEncargado = bundlePresupuesto.getString("nombreEncargado");
-            txtModoPago = bundlePresupuesto.getString("modoPago");
-            txtLicencia = bundlePresupuesto.getString("licencia");
-            txtNumTrabajadores = bundlePresupuesto.getString("numTrabajadores");
-            txtprecioTrabajadores = bundlePresupuesto.getString("precioTrabajador");
-            txtDiasFinalizar = bundlePresupuesto.getString("diasFinalizacion");
-            txtprecioCobrar = bundlePresupuesto.getString("precioAcobrar");
-            txtprecioGasto = bundlePresupuesto.getString("precioAgastar");
-            txtIVA = bundlePresupuesto.getString("iva");
-            if (txtNumeroFactura ==null) {
-                txtNumeroFactura = bundlePresupuesto.getString("numeroFactura");
-                etxtNumeroFactura.setText("Número de factura: " + txtNumeroFactura);
-                etxtFechaFactura.setText("Fecha de facturación " + txtFechaFactura);
-                etxtdireccionReforma.setText("Direccion de la reforma: " + txtdireccionReforma);
-                etxtnombreEncargado.setText("Nombre del encargado: " + txtnombreEncargado);
-                etxtModoPago.setText("Direccion de la reforma: " + txtModoPago);
-                etxtLicencia.setText("Licencia: " + txtLicencia);
-                etxtNumTrabajadores.setText("Cantidad de trabajadores necesarios: " + txtNumTrabajadores);
-                etxtprecioTrabajadores.setText("Precio del trabajador por dia: " + txtprecioTrabajadores);
-                etxtDiasFinalizar.setText("Cantidad de dias en terminar la obra: " + txtDiasFinalizar);
-                etxtprecioCobrar.setText("¿Precio a cobrar?: " + txtprecioCobrar);
-                etxtprecioGasto.setText("¿Cuánto se va a invertir en la obra?: " + txtprecioGasto);
-                etxtIVA.setText("Porcentaje de IVA: " + txtIVA);
-
-            }
-        }
-        // Permisos.
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
-        }
-
-
+/*
         // Generaremos el documento al hacer click sobre el boton.
         btnGenerar = (Button) findViewById(R.id.btn_generar_pdf);
         btnCliente = (Button) findViewById(R.id.btnRellenarCliente);
         btnEmpresa = (Button) findViewById(R.id.btnRellenarEmpresa);
         btnPresupuesto = (Button) findViewById(R.id.btnRellenaPresu);
 
+*/
+    }
 
-        btnGenerar.setOnClickListener(new View.OnClickListener() {
+    public void btnAltaCliente(View v) {
 
-            @Override
-            public void onClick(View v) {
-                generarPdf();
-                Toast.makeText(MenuPresupuestos.this, "Se ha creado tu archivo pdf", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MenuPresupuestos.this, "Su archivo esta en la carpeta de descargas ", Toast.LENGTH_SHORT).show();
+        ClienteActivity clienteActivity = new ClienteActivity();
+        BaseDeDatos dbCliente = new BaseDeDatos(this, "Cliente", null, 1);
 
-            }
+        SQLiteDatabase clienteDataBase = dbCliente.getWritableDatabase();
 
-        });
+        String idClienteString = clienteActivity.idCliente.getText().toString();
+        String nameClienteString = clienteActivity.nameCliente.getText().toString();
+        String lastNamecliente = clienteActivity.lastnameCliente.getText().toString();
+        String domClienteString = clienteActivity.domCliente.getText().toString();
+        String loClienteString = clienteActivity.loCliente.getText().toString();
+        String cpClienteString = clienteActivity.cpCliente.getText().toString();
+        String telefonoClienteString = clienteActivity.tflCliente.getText().toString();
+        String emailClienteString = clienteActivity.emailCliente.getText().toString();
 
-        btnCliente.setOnClickListener(new View.OnClickListener() {
+        ContentValues registroCliente = new ContentValues();
+
+        registroCliente.put("dniCliente", idClienteString);
+        registroCliente.put("nombreCliente", nameClienteString);
+        registroCliente.put("apellidosCliente", lastNamecliente);
+        registroCliente.put("domicilioCliente", domClienteString);
+        registroCliente.put("localidadCliente", loClienteString);
+        registroCliente.put("codigopostalCliente", cpClienteString);
+        registroCliente.put("telefonoCliente", telefonoClienteString);
+        registroCliente.put("emailCliente", emailClienteString);
 
 
-            @Override
-            public void onClick(View v) {
-                Intent clienteActivity = new Intent(MenuPresupuestos.this, ClienteActivity.class);
+        clienteDataBase.insert("tablaCliente", null, registroCliente);
 
-                startActivity(clienteActivity);
-
-
-            }
-        });
-
-        btnEmpresa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent empresaActivity = new Intent(MenuPresupuestos.this, EmpresaActivity.class);
-
-                startActivity(empresaActivity);
-            }
-        });
-        btnPresupuesto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent presuActivity = new Intent(MenuPresupuestos.this, PresupuestoActivity.class);
-                startActivity(presuActivity);
-            }
-        });
+        clienteActivity.idCliente.setText("");
+        clienteActivity.nameCliente.setText("");
+        clienteActivity.lastnameCliente.setText("");
+        clienteActivity.domCliente.setText("");
+        clienteActivity.loCliente.setText("");
+        clienteActivity.cpCliente.setText("");
+        clienteActivity.tflCliente.setText("");
+        clienteActivity.emailCliente.setText("");
+        clienteDataBase.close();
+        Toast.makeText(this, "Se han guardado los datos del cliente", Toast.LENGTH_LONG).show();
 
     }
-//comentario nuevo
+
+    public void btnAltaEmpresa(View v) {
+
+        EmpresaActivity empresaActivity = new EmpresaActivity();
+        BaseDeDatos dbEmpresa = new BaseDeDatos(this, "Empresa", null, 1);
+        SQLiteDatabase empresaDataBase = dbEmpresa.getWritableDatabase();
+
+        String idEmpresaString = empresaActivity.idEmpresa.getText().toString();
+        String nameEmpresaString = empresaActivity.nameEmpresa.getText().toString();
+        String domEmpresaString = empresaActivity.domEmpresa.getText().toString();
+        String loEmpresaString = empresaActivity.loEmpresa.getText().toString();
+        String cpEmpresaString = empresaActivity.cpEmpresa.getText().toString();
+        String telefonoEmpresaString = empresaActivity.telefonoEmpresa.getText().toString();
+        String emailempresaString = empresaActivity.emailEmpresa.getText().toString();
+
+
+        ContentValues registroEmpresa = new ContentValues();
+
+        registroEmpresa.put("dniEmpresa", idEmpresaString);
+        registroEmpresa.put("nombreEmpresa", nameEmpresaString);
+        registroEmpresa.put("domicilioEmpresa", domEmpresaString);
+        registroEmpresa.put("localidadEmpresa", loEmpresaString);
+        registroEmpresa.put("codigoPostalEmpresa", cpEmpresaString);
+        registroEmpresa.put("telefonoEmpresa", telefonoEmpresaString);
+        registroEmpresa.put("emailEmpresa", emailempresaString);
+
+
+        empresaDataBase.insert("tablaEmpresa", null, registroEmpresa);
+
+        empresaActivity.idEmpresa.setText("");
+        empresaActivity.nameEmpresa.setText("");
+        empresaActivity.domEmpresa.setText("");
+        empresaActivity.loEmpresa.setText("");
+        empresaActivity.cpEmpresa.setText("");
+        empresaActivity.telefonoEmpresa.setText("");
+        empresaActivity.emailEmpresa.setText("");
+
+        empresaDataBase.close();
+        Toast.makeText(this, "Se han guardado los datos de la empresa", Toast.LENGTH_LONG).show();
+
+    }
+
+    public void btnAltaPresupuesto(View v) {
+
+        PresupuestoActivity presupuestoActivity = new PresupuestoActivity();
+        BaseDeDatos dbPresupuesto = new BaseDeDatos(this, "Presupuesto", null, 1);
+
+        SQLiteDatabase presupuestoDataBase = dbPresupuesto.getWritableDatabase();
+
+        String nFacturaString = presupuestoActivity.nfacturaPresu.getText().toString();
+        String fechaFactura = presupuestoActivity.fechaPresu.getText().toString();
+        String direccionReformaString = presupuestoActivity.direcionReformaPresu.getText().toString();
+        String encargadoString = presupuestoActivity.encargadoPresu.getText().toString();
+        String licenciaString = presupuestoActivity.licenciaPresu.getText().toString();
+        String detallestrabajoString = presupuestoActivity.detallesTrabajo.getText().toString();
+        String cantidadTrabajorString = presupuestoActivity.cantidadTrabajadoresPresu.getText().toString();
+        String precioTrabajorString = presupuestoActivity.precioTrabajadorDiaPresu.getText().toString();
+        String diasFinzalizarString = presupuestoActivity.diasFinalizacionPresu.getText().toString();
+        String precioCobrarString = presupuestoActivity.precioCobrarPresu.getText().toString();
+        String precioGastarString = presupuestoActivity.precioGastoPresu.getText().toString();
+        String ivaString = presupuestoActivity.ivaPresu.getText().toString();
+
+
+        ContentValues registroPresupuesto = new ContentValues();
+
+        registroPresupuesto.put("numeroFactura", nFacturaString);
+        registroPresupuesto.put("fechaFactura", fechaFactura);
+        registroPresupuesto.put("direccionReforma", direccionReformaString);
+        registroPresupuesto.put("encagado", encargadoString);
+        registroPresupuesto.put("licencia", licenciaString);
+        registroPresupuesto.put("detallesTrabajo", detallestrabajoString);
+        registroPresupuesto.put("cantidadTrabajadores", cantidadTrabajorString);
+        registroPresupuesto.put("precioTrabajador", precioTrabajorString);
+        registroPresupuesto.put("diasFinalizacion", diasFinzalizarString);
+        registroPresupuesto.put("precioCobrar", precioCobrarString);
+        registroPresupuesto.put("precioGastar", precioGastarString);
+        registroPresupuesto.put("iva", ivaString);
+
+
+        presupuestoDataBase.insert("tablaPresupuesto", null, registroPresupuesto);
+
+        presupuestoActivity.nfacturaPresu.setText("");
+        presupuestoActivity.fechaPresu.setText("");
+        presupuestoActivity.direcionReformaPresu.setText("");
+        presupuestoActivity.encargadoPresu.setText("");
+        presupuestoActivity.licenciaPresu.setText("");
+        presupuestoActivity.detallesTrabajo.setText("");
+        presupuestoActivity.cantidadTrabajadoresPresu.setText("");
+        presupuestoActivity.precioTrabajadorDiaPresu.setText("");
+        presupuestoActivity.diasFinalizacionPresu.setText("");
+        presupuestoActivity.precioGastoPresu.setText("");
+        presupuestoActivity.precioCobrarPresu.setText("");
+        presupuestoActivity.ivaPresu.setText("");
+
+
+        presupuestoDataBase.close();
+        Toast.makeText(this, "Se han guardado los datos del presupuesto", Toast.LENGTH_LONG).show();
+
+    }
+
+    public void btnMostrarDatos(View v) {
+        ClienteActivity mostrarCliente = new ClienteActivity();
+        BaseDeDatos consultarCliente = new BaseDeDatos(this, "cliente", null, 1);
+        SQLiteDatabase bd = consultarCliente.getReadableDatabase();
+
+/*
+        String idClienteString = mostrarCliente.idCliente.getText().toString();
+        String nameClienteString = mostrarCliente.nameCliente.getText().toString();
+        String lastNamecliente = mostrarCliente.lastnameCliente.getText().toString();
+        String domClienteString = mostrarCliente.domCliente.getText().toString();
+        String loClienteString = mostrarCliente.loCliente.getText().toString();
+        String cpClienteString = mostrarCliente.cpCliente.getText().toString();
+        String telefonoClienteString = mostrarCliente.tflCliente.getText().toString();
+        String emailClienteString = mostrarCliente.emailCliente.getText().toString();
+*/
+        Cursor filaCliente = bd.rawQuery("select *from cliente", null);
+        if (filaCliente.moveToFirst()) {
+
+            txtdato.setText(filaCliente.getString(0));
+            txtdato1.setText(filaCliente.getString(1));
+            txtdato2.setText(filaCliente.getString(2));
+            txtdato3.setText(filaCliente.getString(3));
+            txtdato4.setText(filaCliente.getString(4));
+            txtdato5.setText(filaCliente.getString(5));
+
+        } else {
+            Toast.makeText(this, "No has rellenado los datos cliente", Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     public void generarPdf() {
 

@@ -26,18 +26,23 @@
 
 
                 <Button
-                        android:id="@+id/btnRellenarCliente"
+                        android:onClick="btnAltaCliente"
                         android:text="Rellenar datos del cliente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <Button
-                        android:id="@+id/btnRellenarEmpresa"
+                        android:onClick="btnAltaEmpresa"
                         android:text=" Rellenar datos de la Empresa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <Button
-                        android:id="@+id/btnRellenaPresu"
+                        android:onClick="btnAltaPresupuesto"
                         android:text="Rellenar datos del presupuesto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <Button
+                        android:onClick="btnMostrarDatos"
+                        android:text="Mostrar todos los datos rellenos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

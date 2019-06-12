@@ -80,6 +80,26 @@
                 android:id="@+id/codigoPostalCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Teléfono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/telefonoCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="Correo Electrónico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:paddingLeft="20sp"
+                android:id="@+id/correoCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
         <Button
                 android:id="@+id/btnSiguienteAlPresupuesto"

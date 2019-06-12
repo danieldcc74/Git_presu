@@ -10,7 +10,7 @@ import android.widget.EditText;
 public class EmpresaActivity extends AppCompatActivity {
     Button btnEmpresaAlMenu;
     String textIDEmpresa, textNameEmpresa, textDomEmpresa, textLoEmpresa, textCpEmpresa;
-    EditText idEmpresa, nameEmpresa, domEmpresa, loEmpresa, cpEmpresa;
+    EditText idEmpresa, nameEmpresa, domEmpresa, loEmpresa, cpEmpresa, telefonoEmpresa,emailEmpresa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class EmpresaActivity extends AppCompatActivity {
         domEmpresa = (EditText) findViewById(R.id.domicilioEmpresa);
         loEmpresa = (EditText) findViewById(R.id.localidadEmpresa);
         cpEmpresa = (EditText) findViewById(R.id.codigoPostalEmpresa);
+        telefonoEmpresa = (EditText) findViewById(R.id.tlfEmpresa);
+        emailEmpresa = (EditText) findViewById(R.id.correoEmpresa);
 
 
         btnEmpresaAlMenu.setOnClickListener(new View.OnClickListener() {
