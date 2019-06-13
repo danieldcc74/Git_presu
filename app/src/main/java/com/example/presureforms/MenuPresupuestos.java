@@ -1,49 +1,46 @@
 package com.example.presureforms;
 
 import android.Manifest;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCursorDriver;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
-
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
+import harmony.java.awt.Color;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+//import com.itextpdf.text.pdf.PdfPTable;
+//import com.itextpdf.text.pdf.PdfWriter;
+
 public class MenuPresupuestos extends AppCompatActivity {
 
 
-    public static String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa;
-    public static String dato0c, dato1c, dato2c, dato3c, dato4c, dato5c;
+    public static String dato0Empresa, dato1Empresa, dato3Empresa, dato4Empresa, dato5Empresa, dato6Empresa, dato7Empresa;
+    public static String dato0c, dato1c, dato2c, dato3c, dato4c, dato5c, dato6c, dato7c, dato8c;
     public static String txtNumeroFactura, txtFechaFactura;
-    public static String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
+    public static String txtModoPago, txtdireccionReforma, txtnombreEncargado, txtLicencia, txtDetallesTrabajo, txtprecioTrabajadores, txtNumTrabajadores, txtDiasFinalizar, txtprecioGasto, txtprecioCobrar, txtIVA;
 
     //textos a mostrar del cliente
-    TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5;
+    private TextView txtdato, txtdato1, txtdato2, txtdato3, txtdato4, txtdato5, txtdato6, txtdato7, txtdato8;
     //textos a mostrar de la empresa
-    TextView txtdatoEmpresa, txtdato1Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa;
+    private TextView txtdatoEmpresa, txtdato1Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa, txtdato6Empresa, txtdato7Empresa;
     //textos a mostrar del presupuesto
-    TextView etxtNumeroFactura, etxtFechaFactura;
-    TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtIVA;
+    private TextView etxtNumeroFactura, etxtFechaFactura;
+    private TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtIVA;
+    private TextView etxtDatosAdicionales, etxtTotalTrabajador, etxtIvaPorcentajeTotal, etxtTotalneto, etxtBeneficios;
 
 
     private final static String CARPETA = "Facturas";
@@ -62,9 +59,6 @@ public class MenuPresupuestos extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
         }
 
-        Bundle bundlePresupuesto = getIntent().getExtras();
-        Bundle bundleEmpresa = getIntent().getExtras();
-
         //DECLARACION DE TEXTVIEW DEL XML DEL CLIENTE
         txtdato = (TextView) findViewById(R.id.dato);
         txtdato1 = (TextView) findViewById(R.id.dato1);
@@ -72,6 +66,9 @@ public class MenuPresupuestos extends AppCompatActivity {
         txtdato3 = (TextView) findViewById(R.id.dato3);
         txtdato4 = (TextView) findViewById(R.id.dato4);
         txtdato5 = (TextView) findViewById(R.id.dato5);
+        txtdato6 = (TextView) findViewById(R.id.dato6);
+        txtdato7 = (TextView) findViewById(R.id.dato7);
+        txtdato8 = (TextView) findViewById(R.id.dato8);
 
         //DECLARACION DE TEXTVIEW DEL XML DE LA EMPRESA
         txtdatoEmpresa = (TextView) findViewById(R.id.datoEmpresa);
@@ -79,6 +76,8 @@ public class MenuPresupuestos extends AppCompatActivity {
         txtdato3Empresa = (TextView) findViewById(R.id.dato3Empresa);
         txtdato4Empresa = (TextView) findViewById(R.id.dato4Empresa);
         txtdato5Empresa = (TextView) findViewById(R.id.dato5Empresa);
+        txtdato6Empresa = (TextView) findViewById(R.id.dato6Empresa);
+        txtdato7Empresa = (TextView) findViewById(R.id.dato7Empresa);
 
         //DECLARACION DE TEXTVIEW DEL XML DEL PRESUPUESTO
         etxtNumeroFactura = (TextView) findViewById(R.id.facturaM);
@@ -93,148 +92,110 @@ public class MenuPresupuestos extends AppCompatActivity {
         etxtDiasFinalizar = (TextView) findViewById(R.id.diasFinalizacionM);
         etxtprecioGasto = (TextView) findViewById(R.id.precioGastoM);
         etxtprecioCobrar = (TextView) findViewById(R.id.precioCobrarM);
-        etxtIVA = (TextView) findViewById(R.id.ivaM);
-/*
+        etxtDatosAdicionales = (TextView) findViewById(R.id.datosAdicionales);
+        etxtTotalTrabajador = (TextView) findViewById(R.id.totalTrabajador);
+        etxtIvaPorcentajeTotal = (TextView) findViewById(R.id.ivaPorcentajetTotal);
+        etxtTotalneto = (TextView) findViewById(R.id.totalNeto);
+        etxtBeneficios = (TextView) findViewById(R.id.ivaM);
+
         // Generaremos el documento al hacer click sobre el boton.
         btnGenerar = (Button) findViewById(R.id.btn_generar_pdf);
         btnCliente = (Button) findViewById(R.id.btnRellenarCliente);
         btnEmpresa = (Button) findViewById(R.id.btnRellenarEmpresa);
         btnPresupuesto = (Button) findViewById(R.id.btnRellenaPresu);
 
+
+        txtdato.setText("NIF / DNI / NIE: " + dato0c);
+        txtdato1.setText("Nombre: " + dato2c);
+        txtdato2.setText(dato2c);
+        txtdato3.setText("Domicilio: " + dato3c);
+        txtdato4.setText("Localidad: " + dato4c);
+        txtdato5.setText("Código postal: " + dato5c);
+        txtdato6.setText("Teléfono:" + dato6c);
+        txtdato7.setText("Correo Electrónico: " + dato7c);
+
+
+        txtdatoEmpresa.setText("NIF / DNI / NIE: " + dato0Empresa);
+        txtdato1Empresa.setText("Nombre emprsa o particular: " + dato1Empresa);
+        txtdato3Empresa.setText("Domicilio: " + dato3Empresa);
+        txtdato4Empresa.setText("Localidad: " + dato4Empresa);
+        txtdato5Empresa.setText("Código postal: " + dato5Empresa);
+        txtdato6Empresa.setText("Teléfono: " + dato6Empresa);
+        txtdato7Empresa.setText("Correo Electrónico: " + dato7Empresa);
+
+        etxtNumeroFactura.setText("Número de factura: " + txtNumeroFactura);
+        etxtFechaFactura.setText("Fecha de factura: " + txtFechaFactura);
+        etxtdireccionReforma.setText("Trabajo realizado en: " + txtdireccionReforma);
+        etxtModoPago.setText("Modo de pago: " + txtModoPago);
+        etxtnombreEncargado.setText("Nombre del encargado: " + txtnombreEncargado);
+        etxtLicencia.setText("Requiere licencia: " + txtLicencia);
+        etxtprecioTrabajadores.setText("Precio de trabajor por dia: " + txtprecioTrabajadores);
+        etxtNumTrabajadores.setText("¿Cuántos trabajadores necesita?: " + txtNumTrabajadores);
+        etxtDiasFinalizar.setText("Plazo de entrega: " + txtDiasFinalizar + " dias");
+        etxtprecioGasto.setText("¿Cuánto va a invertir en materiales?: " + txtprecioGasto);
+        etxtprecioCobrar.setText("¿Cuanto le va a cobrar al cliente?: " + txtprecioCobrar);
+       // etxtIVA.setText("Porcentaje de IVA: " + txtIVA);
+
+
+        /*
+        etxtDatosAdicionales.setText("Datos adicionales");
+        etxtTotalTrabajador.setText("Mano de obra: " + totalPrecioTrabajadorString);
+
+        etxtprecioCobrar.setText("Total bruto: " + txtprecioCobrar);
+        etxtIvaPorcentajeTotal.setText("IVA: " + calculoIVA);
+        etxtTotalneto.setText("Total neto: " + totalNeto);
+        etxtBeneficios.setText("Beficios: " + beficiosTotales);
+
+        final Double numTrabajador = Double.parseDouble(txtNumTrabajadores);
+        final Double precioTrabajador = Double.parseDouble(txtprecioTrabajadores);
+        final Double diasFinalizacion = Double.parseDouble(txtDiasFinalizar);
+        final Double totalPrecioTrabajador = (numTrabajador * precioTrabajador) * diasFinalizacion;
+        final String totalPrecioTrabajadorString = String.valueOf(totalPrecioTrabajador);
+
+
+        final Double inversion = Double.parseDouble(txtprecioCobrar);
+        final Double totalBruto = Double.parseDouble(txtprecioGasto);
+        final Double iva = Double.parseDouble(txtIVA);
+        final Double calculoIVA = totalBruto * iva / 100;
+        final Double totalNeto = calculoIVA + totalBruto;
+
+        Double beficiosTotales = (totalNeto - totalPrecioTrabajador) - inversion;
 */
-    }
+
+        btnCliente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent siguienteCliente = new Intent(MenuPresupuestos.this, ClienteActivity.class);
+                startActivity(siguienteCliente);
+            }
 
 
-    public void btnAltaEmpresa(View v) {
+        });
+        btnEmpresa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent siguienteEmpresa = new Intent(MenuPresupuestos.this, EmpresaActivity.class);
+                startActivity(siguienteEmpresa);
+            }
+        });
+        btnPresupuesto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent siguientePresupuesto = new Intent(MenuPresupuestos.this, PresupuestoActivity.class);
+                startActivity(siguientePresupuesto);
+            }
+        });
+        btnGenerar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generarPdf();
+                Toast.makeText(MenuPresupuestos.this, "PDF lanzado", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        EmpresaActivity empresaActivity = new EmpresaActivity();
-        BaseDeDatos dbEmpresa = new BaseDeDatos(this, "Empresa", null, 1);
-        SQLiteDatabase empresaDataBase = dbEmpresa.getWritableDatabase();
-
-        String idEmpresaString = empresaActivity.idEmpresa.getText().toString();
-        String nameEmpresaString = empresaActivity.nameEmpresa.getText().toString();
-        String domEmpresaString = empresaActivity.domEmpresa.getText().toString();
-        String loEmpresaString = empresaActivity.loEmpresa.getText().toString();
-        String cpEmpresaString = empresaActivity.cpEmpresa.getText().toString();
-        String telefonoEmpresaString = empresaActivity.telefonoEmpresa.getText().toString();
-        String emailempresaString = empresaActivity.emailEmpresa.getText().toString();
-
-
-        ContentValues registroEmpresa = new ContentValues();
-
-        registroEmpresa.put("dniEmpresa", idEmpresaString);
-        registroEmpresa.put("nombreEmpresa", nameEmpresaString);
-        registroEmpresa.put("domicilioEmpresa", domEmpresaString);
-        registroEmpresa.put("localidadEmpresa", loEmpresaString);
-        registroEmpresa.put("codigoPostalEmpresa", cpEmpresaString);
-        registroEmpresa.put("telefonoEmpresa", telefonoEmpresaString);
-        registroEmpresa.put("emailEmpresa", emailempresaString);
-
-
-        empresaDataBase.insert("tablaEmpresa", null, registroEmpresa);
-
-        empresaActivity.idEmpresa.setText("");
-        empresaActivity.nameEmpresa.setText("");
-        empresaActivity.domEmpresa.setText("");
-        empresaActivity.loEmpresa.setText("");
-        empresaActivity.cpEmpresa.setText("");
-        empresaActivity.telefonoEmpresa.setText("");
-        empresaActivity.emailEmpresa.setText("");
-
-        empresaDataBase.close();
-
-        Toast.makeText(this, "Se han guardado los datos de la empresa", Toast.LENGTH_LONG).show();
 
     }
 
-    public void btnAltaPresupuesto(View v) {
-
-        PresupuestoActivity presupuestoActivity = new PresupuestoActivity();
-        BaseDeDatos dbPresupuesto = new BaseDeDatos(this, "Presupuesto", null, 1);
-
-        SQLiteDatabase presupuestoDataBase = dbPresupuesto.getWritableDatabase();
-
-        String nFacturaString = presupuestoActivity.nfacturaPresu.getText().toString();
-        String fechaFactura = presupuestoActivity.fechaPresu.getText().toString();
-        String direccionReformaString = presupuestoActivity.direcionReformaPresu.getText().toString();
-        String encargadoString = presupuestoActivity.encargadoPresu.getText().toString();
-        String licenciaString = presupuestoActivity.licenciaPresu.getText().toString();
-        String detallestrabajoString = presupuestoActivity.detallesTrabajo.getText().toString();
-        String cantidadTrabajorString = presupuestoActivity.cantidadTrabajadoresPresu.getText().toString();
-        String precioTrabajorString = presupuestoActivity.precioTrabajadorDiaPresu.getText().toString();
-        String diasFinzalizarString = presupuestoActivity.diasFinalizacionPresu.getText().toString();
-        String precioCobrarString = presupuestoActivity.precioCobrarPresu.getText().toString();
-        String precioGastarString = presupuestoActivity.precioGastoPresu.getText().toString();
-        String ivaString = presupuestoActivity.ivaPresu.getText().toString();
-
-
-        ContentValues registroPresupuesto = new ContentValues();
-
-        registroPresupuesto.put("numeroFactura", nFacturaString);
-        registroPresupuesto.put("fechaFactura", fechaFactura);
-        registroPresupuesto.put("direccionReforma", direccionReformaString);
-        registroPresupuesto.put("encagado", encargadoString);
-        registroPresupuesto.put("licencia", licenciaString);
-        registroPresupuesto.put("detallesTrabajo", detallestrabajoString);
-        registroPresupuesto.put("cantidadTrabajadores", cantidadTrabajorString);
-        registroPresupuesto.put("precioTrabajador", precioTrabajorString);
-        registroPresupuesto.put("diasFinalizacion", diasFinzalizarString);
-        registroPresupuesto.put("precioCobrar", precioCobrarString);
-        registroPresupuesto.put("precioGastar", precioGastarString);
-        registroPresupuesto.put("iva", ivaString);
-
-
-        presupuestoDataBase.insert("tablaPresupuesto", null, registroPresupuesto);
-
-        presupuestoActivity.nfacturaPresu.setText("");
-        presupuestoActivity.fechaPresu.setText("");
-        presupuestoActivity.direcionReformaPresu.setText("");
-        presupuestoActivity.encargadoPresu.setText("");
-        presupuestoActivity.licenciaPresu.setText("");
-        presupuestoActivity.detallesTrabajo.setText("");
-        presupuestoActivity.cantidadTrabajadoresPresu.setText("");
-        presupuestoActivity.precioTrabajadorDiaPresu.setText("");
-        presupuestoActivity.diasFinalizacionPresu.setText("");
-        presupuestoActivity.precioGastoPresu.setText("");
-        presupuestoActivity.precioCobrarPresu.setText("");
-        presupuestoActivity.ivaPresu.setText("");
-
-
-        presupuestoDataBase.close();
-        // Toast.makeText(ClienteActivity.this, "Se han guardado los datos del presupuesto", Toast.LENGTH_LONG).show();
-
-    }
-/*
-    public void btnMostrarDatos(View v) {
-        ClienteActivity mostrarCliente = new ClienteActivity();
-        BaseDeDatos consultarCliente = new BaseDeDatos(this, "cliente", null, 1);
-        SQLiteDatabase bd = consultarCliente.getReadableDatabase();
-
-/*
-        String idClienteString = mostrarCliente.idCliente.getText().toString();
-        String nameClienteString = mostrarCliente.nameCliente.getText().toString();
-        String lastNamecliente = mostrarCliente.lastnameCliente.getText().toString();
-        String domClienteString = mostrarCliente.domCliente.getText().toString();
-        String loClienteString = mostrarCliente.loCliente.getText().toString();
-        String cpClienteString = mostrarCliente.cpCliente.getText().toString();
-        String telefonoClienteString = mostrarCliente.tflCliente.getText().toString();
-        String emailClienteString = mostrarCliente.emailCliente.getText().toString();
-*/
-      /*  Cursor filaCliente = bd.rawQuery("select *from cliente", null);
-        if (filaCliente.moveToFirst()) {
-
-            txtdato.setText(filaCliente.getString(0));
-            txtdato1.setText(filaCliente.getString(1));
-            txtdato2.setText(filaCliente.getString(2));
-            txtdato3.setText(filaCliente.getString(3));
-            txtdato4.setText(filaCliente.getString(4));
-            txtdato5.setText(filaCliente.getString(5));
-
-        } else {
-            Toast.makeText(this, "No has rellenado los datos cliente", Toast.LENGTH_LONG).show();
-        }
-    }
-*/
 
     public void generarPdf() {
 
@@ -253,34 +214,49 @@ public class MenuPresupuestos extends AppCompatActivity {
             // Asociamos el flujo que acabamos de crear al documento.
             PdfWriter escribir = PdfWriter.getInstance(documento, ficheroPdf);
 
+            HeaderFooter cabecera = new HeaderFooter(new Phrase("Número de factura: "+txtNumeroFactura +
+                    "\n" + "Fecha factura: "+txtFechaFactura), false);
+            cabecera.setAlignment(Element.ALIGN_RIGHT);
+
+            documento.setHeader(cabecera);
             // Abrimos el documento.
             documento.open();
 
+
             // Añadimos un titulo con la fuente por defecto.
 
-            Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 20,
+            Font titulo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16,
+                    Font.BOLD);
+            Font subtitulo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 14,
+                    Font.BOLD);
+            Font parrafo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12,
                     Font.BOLD);
 
+            PdfPTable tablaCabeceraEmpresa = new PdfPTable(1,);
+//remplazar datos
 
-            PdfPTable tablaCabeceraEmpresa = new PdfPTable(1);
+            tablaCabeceraEmpresa.addCell(new Phrase("sdasdasdasd"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
 
 
-            tablaCabeceraEmpresa.addCell("NIF/DNI/CIF: " + dato0Empresa);
-            tablaCabeceraEmpresa.addCell("Nombre empresa o particular: " + dato1Empresa);
-            tablaCabeceraEmpresa.addCell("Domicilio: " + dato3Empresa);
-            tablaCabeceraEmpresa.addCell("Localidad: " + dato4Empresa);
-            tablaCabeceraEmpresa.addCell("Codigo postal: " + dato5Empresa);
 
-//temazos que tienes puestos eh dua lipa
             PdfPTable tablaCabeceraCliente = new PdfPTable(1);
-
-            tablaCabeceraCliente.addCell("NIF/DNI/CIF: " + dato0c);
-            tablaCabeceraCliente.addCell("Nombre: " + dato1c + " " + dato2c);
-            tablaCabeceraCliente.addCell("Domicilio: " + dato3c);
-            tablaCabeceraCliente.addCell("Localidad: " + dato4c);
-            tablaCabeceraCliente.addCell("Código postal: " + dato5c);
             tablaCabeceraCliente.setSpacingAfter(10);
             tablaCabeceraCliente.setSpacingBefore(10);
+            tablaCabeceraEmpresa.addCell(new Phrase("sdasdasdasd"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase("sdfasfsdafas"+dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase(dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase(dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase(dato0c));
+            tablaCabeceraEmpresa.addCell(new Phrase(dato0c));
+
+
 
 
 //y donde metes el presupuesto en el codigo donde generas la factura donde estan los detalles del presupuesto
@@ -290,16 +266,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 
             PdfPTable celdatotalObra = new PdfPTable(1);
 
-            double precioObra = Double.parseDouble(txtprecioCobrar);
-            double ivaObra = Double.parseDouble(txtIVA);
-            //
-            double totalIVa = precioObra * ivaObra / 100;
-            double totalNeto = precioObra + totalIVa;
-            String totalnetoString = String.valueOf(totalNeto);
-            celdatotalObra.addCell(txtdireccionReforma);
-            celdatotalObra.addCell("Total Bruto: " + txtprecioCobrar);
-            celdatotalObra.addCell("IVA " + txtIVA + ": " + totalIVa);
-            celdatotalObra.addCell("Total Neto:" + totalNeto);
 
             PdfPCell celdaFinal = new PdfPCell(new Paragraph("Final de la tabla"));
 
@@ -315,8 +281,6 @@ public class MenuPresupuestos extends AppCompatActivity {
             documento.add(tablaPrincipal);
             documento.add(celdaFinal);
 
-
-            documento.close();
 
             // Agregar marca de agua
             /*font = FontFactory.getFont(FontFactory.HELVETICA, 42, Font.BOLD,

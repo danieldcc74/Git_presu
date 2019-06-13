@@ -6,11 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import static com.example.presureforms.MenuPresupuestos.*;
+
 
 public class EmpresaActivity extends AppCompatActivity {
     Button btnEmpresaAlMenu;
-   public static String textIDEmpresa, textNameEmpresa, textDomEmpresa, textLoEmpresa, textCpEmpresa;
-    EditText idEmpresa, nameEmpresa, domEmpresa, loEmpresa, cpEmpresa, telefonoEmpresa,emailEmpresa;
+
+    EditText idEmpresa, nameEmpresa, domEmpresa, loEmpresa, cpEmpresa, telefonoEmpresa, emailEmpresa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,21 +35,16 @@ public class EmpresaActivity extends AppCompatActivity {
         btnEmpresaAlMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dato0Empresa = idEmpresa.getText().toString();
+                dato1Empresa = nameEmpresa.getText().toString();
+                dato3Empresa = domEmpresa.getText().toString();
+                dato4Empresa = loEmpresa.getText().toString();
+                dato5Empresa = cpEmpresa.getText().toString();
+                dato6Empresa = telefonoEmpresa.getText().toString();
+                dato7Empresa = emailEmpresa.getText().toString();
+
                 Intent siguiente = new Intent(EmpresaActivity.this, MenuPresupuestos.class);
-                startActivity(siguiente);
-                textIDEmpresa = idEmpresa.getText().toString();
-                textNameEmpresa = nameEmpresa.getText().toString();
-                textDomEmpresa = domEmpresa.getText().toString();
-                textLoEmpresa = loEmpresa.getText().toString();
-                textCpEmpresa = cpEmpresa.getText().toString();
-
-                Bundle bundleEmpresa = new Bundle();
-                siguiente.putExtra("idEmpresa", textIDEmpresa);
-                siguiente.putExtra("nameEmpresa", textNameEmpresa);
-                siguiente.putExtra("domEmpresa", textDomEmpresa);
-                siguiente.putExtra("loEmpresa", textLoEmpresa);
-                siguiente.putExtra("cpEmpresa", textCpEmpresa);
-
+                Toast.makeText(EmpresaActivity.this, "Se han guardado los datos de la empresa", Toast.LENGTH_SHORT).show();
 
                 startActivity(siguiente);
 

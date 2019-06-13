@@ -1,86 +1,68 @@
 package com.example.presureforms;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import static com.example.presureforms.MenuPresupuestos.*;
 
 public class PresupuestoActivity extends AppCompatActivity {
-    String txtNumeroFactura,txtFechaFactura;
-    String txtdireccionReforma,txtnombreEncargado,txtLicencia,txtNumTrabajadores,txtDiasFinalizar, txtprecioGasto,txtprecioCobrar,txtIVA;
     Button btnSiguienteGenerar;
 
-    EditText nfacturaPresu,fechaPresu;
-   EditText direcionReformaPresu,encargadoPresu,licenciaPresu,detallesTrabajo,cantidadTrabajadoresPresu,precioTrabajadorDiaPresu,diasFinalizacionPresu,precioGastoPresu,precioCobrarPresu,ivaPresu ;
-    Bundle bundleEmpresaFinal;
+    EditText nfacturaPresu, fechaPresu;
+    EditText modoPago, direcionReformaPresu, encargadoPresu, licenciaPresu, detallesTrabajoPresu, cantidadTrabajadoresPresu, precioTrabajadorDiaPresu, diasFinalizacionPresu, precioGastoPresu, precioCobrarPresu, ivaPresu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.setTitle(R.string.nameActionPresupuesto);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presupuesto_);
-        btnSiguienteGenerar=(Button)findViewById(R.id.btnSiguienteDescripcion);
-/*
-        txtNumeroFactura=(TextView)findViewById(R.id.nFactura);
-        txtFechaFactura=(TextView)findViewById(R.id.fechFactura);
-        txtdescripcionTrabajo=(TextView)findViewById(R.id.titulodescripcion);
-        txtdireccionReforma=(TextView)findViewById(R.id.direccionReforma);
-        txtnombreEncargado=(TextView)findViewById(R.id.encargado);
+        btnSiguienteGenerar = (Button) findViewById(R.id.btnSiguienteDescripcion);
 
-         txtLicencia=(TextView)findViewById(R.id.licencia);
-        txtNumTrabajadores=(TextView)findViewById(R.id.);*/
 
-        nfacturaPresu=(EditText)findViewById(R.id.nFactura);
-        fechaPresu=(EditText)findViewById(R.id.fechFactura);
-        direcionReformaPresu=(EditText)findViewById(R.id.direccionReforma);
-        encargadoPresu=(EditText)findViewById(R.id.encargado);
-        licenciaPresu=(EditText)findViewById(R.id.licencia);
-        detallesTrabajo=(EditText)findViewById(R.id.detallesDelTrabajo);
-        cantidadTrabajadoresPresu=(EditText)findViewById(R.id.encargado);
-        precioTrabajadorDiaPresu=(EditText)findViewById(R.id.precioTrabajadorDia);
-        diasFinalizacionPresu=(EditText)findViewById(R.id.diasFinalizacion);
-        precioGastoPresu=(EditText)findViewById(R.id.precioGasto);
-        precioCobrarPresu=(EditText)findViewById(R.id.precioCobrar);
-        ivaPresu=(EditText)findViewById(R.id.iva);
+        nfacturaPresu = (EditText) findViewById(R.id.nFactura);
+        fechaPresu = (EditText) findViewById(R.id.fechFactura);
+        direcionReformaPresu = (EditText) findViewById(R.id.direccionReforma);
+        encargadoPresu = (EditText) findViewById(R.id.encargado);
+        licenciaPresu = (EditText) findViewById(R.id.licencia);
+        modoPago = (EditText) findViewById(R.id.modoPagoE);
+        detallesTrabajoPresu = (EditText) findViewById(R.id.detallesDelTrabajo);
+        cantidadTrabajadoresPresu = (EditText) findViewById(R.id.encargado);
+        precioTrabajadorDiaPresu = (EditText) findViewById(R.id.precioTrabajadorDia);
+        diasFinalizacionPresu = (EditText) findViewById(R.id.diasFinalizacion);
+        precioGastoPresu = (EditText) findViewById(R.id.precioGasto);
+        precioCobrarPresu = (EditText) findViewById(R.id.precioCobrar);
+        ivaPresu = (EditText) findViewById(R.id.iva);
 
 
         btnSiguienteGenerar.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent siguiente = new Intent(PresupuestoActivity.this, MenuPresupuestos.class);
-        startActivity(siguiente);
-/*
-        txtNumeroFactura= nfacturaPresu.getText().toString();
-        txtFechaFactura= fechaPresu.getText().toString();
-        txtdireccionReforma= direcionReformaPresu.getText().toString();
-        txtnombreEncargado= encargadoPresu.getText().toString();
-        txtLicencia= licenciaPresu.getText().toString();
+            @Override
+            public void onClick(View v) {
 
-        txtNumTrabajadores= cantidadTrabajadoresPresu.getText().toString();
-        txtDiasFinalizar= diasFinalizacionPresu.getText().toString();
-        txtprecioGasto= precioGastoPresu.getText().toString();
-        txtprecioCobrar= precioCobrarPresu.getText().toString();
-        txtIVA= ivaPresu.getText().toString();
+               txtNumeroFactura = nfacturaPresu.getText().toString();
+               txtFechaFactura = fechaPresu.getText().toString();
+               txtdireccionReforma = direcionReformaPresu.getText().toString();
+               txtnombreEncargado = encargadoPresu.getText().toString();
+               txtLicencia = licenciaPresu.getText().toString();
+               txtDetallesTrabajo = detallesTrabajoPresu.getText().toString();
+               txtNumTrabajadores = cantidadTrabajadoresPresu.getText().toString();
+               txtprecioTrabajadores = precioTrabajadorDiaPresu.getText().toString();
+               txtDiasFinalizar = diasFinalizacionPresu.getText().toString();
+               txtprecioGasto = precioGastoPresu.getText().toString();
+               txtprecioCobrar = precioCobrarPresu.getText().toString();
+               txtModoPago = modoPago.getText().toString();
+                txtIVA = ivaPresu.getText().toString();
 
-        Bundle bundlePresupuesto = new Bundle();
-        siguiente.putExtra("numeroFactura", txtNumeroFactura);
-        siguiente.putExtra("fechaFactura", txtFechaFactura);
-        siguiente.putExtra("direccionReforma", txtdireccionReforma);
-        siguiente.putExtra("nombreEncargado", txtnombreEncargado);
-        siguiente.putExtra("modoPago", txtnombreEncargado);
-        siguiente.putExtra("licencia", txtLicencia);
-        siguiente.putExtra("numTrabajadores", txtNumTrabajadores);
-        siguiente.putExtra("precioTrabajador", txtNumTrabajadores);
-        siguiente.putExtra("diasFinalizacion", txtDiasFinalizar);
-        siguiente.putExtra("precioAgastar", txtprecioGasto);
-        siguiente.putExtra("precioAcobrar", txtprecioCobrar);
-        siguiente.putExtra("iva", txtIVA);
-*/
-        startActivity(siguiente);
-    }
-});
+
+
+                Intent siguiente = new Intent(PresupuestoActivity.this, MenuPresupuestos.class);
+
+
+                startActivity(siguiente);
+            }
+        });
 
 
     }
