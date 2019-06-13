@@ -232,7 +232,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             Font parrafo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 12,
                     Font.BOLD);
 
-            PdfPTable tablaCabeceraEmpresa = new PdfPTable(1,);
+            PdfPTable tablaCabeceraEmpresa = new PdfPTable(1);
 //remplazar datos
 
             tablaCabeceraEmpresa.addCell(new Phrase("sdasdasdasd"+dato0c));
@@ -277,7 +277,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             documento.add(tablaCabeceraEmpresa);
             documento.add(new Phrase("DATOS CLIENTE"));
             documento.add(tablaCabeceraCliente);
-            documento.add(new Paragraph("DETALLES DEL TRABAJO", font));
+            documento.add(new Paragraph("DETALLES DEL TRABAJO"));
             documento.add(tablaPrincipal);
             documento.add(celdaFinal);
 
