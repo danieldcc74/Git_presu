@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PresuReforms</string>
+    <string name="app_name">FastFact</string>
     <string name="action_settings">Settings</string>
     <string name="nameActionPrincipal">Menu principal</string>
     <string name="nameActionCliente">Datos del cliente</string>

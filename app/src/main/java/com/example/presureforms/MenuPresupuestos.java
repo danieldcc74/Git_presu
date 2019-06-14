@@ -32,17 +32,12 @@ import com.itextpdf.text.pdf.PdfWriter;*/
 public class MenuPresupuestos extends AppCompatActivity {
 
 
-    Double inversion ;
+    Double inversion;
     Double totalBruto;
-    Double iva ;
-
+    Double iva;
     Double calculoIVA;
     Double totalNeto;
-
     Double beficiosTotales;
-
-
-
 
 
     public static String dato0Empresa = "", dato1Empresa = "", dato3Empresa = "", dato4Empresa = "", dato5Empresa = "", dato6Empresa = "", dato7Empresa = "";
@@ -56,7 +51,7 @@ public class MenuPresupuestos extends AppCompatActivity {
     private TextView txtdatoEmpresa, txtdato1Empresa, txtdato3Empresa, txtdato4Empresa, txtdato5Empresa, txtdato6Empresa, txtdato7Empresa;
     //textos a mostrar del presupuesto
     private TextView etxtNumeroFactura, etxtFechaFactura;
-    private TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtDetalles, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar,etxtBruto,etxtIVA;
+    private TextView etxtdireccionReforma, etxtModoPago, etxtnombreEncargado, etxtDetalles, etxtLicencia, etxtprecioTrabajadores, etxtNumTrabajadores, etxtDiasFinalizar, etxtprecioGasto, etxtprecioCobrar, etxtBruto, etxtIVA;
 
     private TextView etxtDatosAdicionales, etxtTotalTrabajador, etxtIvaPorcentajeTotal, etxtTotalneto, etxtBeneficios;
     public EditText enombreFichero;
@@ -72,8 +67,8 @@ public class MenuPresupuestos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_presupuestos);
         this.setTitle(R.string.nameActionPrincipal);// nombre de actionBar
-        // Permisos.
 
+        // hace comprobacion de que el usuario a aceptado los permisos de lectura y escrituraa
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,}, 1000);
         }
@@ -110,9 +105,6 @@ public class MenuPresupuestos extends AppCompatActivity {
         etxtDetalles = (TextView) findViewById(R.id.detallesM);
 
 
-
-
-
         etxtModoPago = (TextView) findViewById(R.id.modoPagoM);
         etxtLicencia = (TextView) findViewById(R.id.licenciaM);
         etxtNumTrabajadores = (TextView) findViewById(R.id.cantidadTrabajadoresM);
@@ -142,7 +134,7 @@ public class MenuPresupuestos extends AppCompatActivity {
         txtdato3.setText("Domicilio: " + dato3c);
         txtdato4.setText("Localidad: " + dato4c);
         txtdato5.setText("Código postal: " + dato5c);
-        txtdato6.setText("Teléfono:" + dato6c);
+        txtdato6.setText("Teléfono: " + dato6c);
         txtdato7.setText("Correo Electrónico: " + dato7c);
 
 
@@ -170,22 +162,19 @@ public class MenuPresupuestos extends AppCompatActivity {
         etxtDiasFinalizar.setText("Plazo de entrega: " + txtDiasFinalizar + " dias");
 
 
-        etxtprecioGasto.setText("¿Cuánto va a invertir en materiales?: " + txtprecioGasto);
-        etxtprecioCobrar.setText("¿Cuanto le va a cobrar al cliente?: " + txtprecioCobrar);
+        etxtprecioGasto.setText("¿Cuánto va a invertir en materiales?: " + txtprecioGasto +"€");
+        etxtprecioCobrar.setText("¿Cuanto le va a cobrar al cliente?: " + txtprecioCobrar+"€");
 
 
-        etxtDetalles.setText("Concepto:" + txtDetalles);
-        etxtIVA.setText("Porcentaje de IVA: "+txtIVA);
-
-
-
+        etxtDetalles.setText("Concepto:" + "\n" + txtDetalles);
+        etxtIVA.setText("Porcentaje de IVA: " + txtIVA);
 
 
         if (txtNumTrabajadores.equals("")) {
 
-        }
-        else{
+        } else {
             etxtDatosAdicionales.setText("Datos adicionales");
+            //Conversiones
             Double numTrabajador = Double.parseDouble(txtNumTrabajadores);
             Double precioTrabajador = Double.parseDouble(txtprecioTrabajadores);
             Double diasFinalizacion = Double.parseDouble(txtDiasFinalizar);
@@ -193,14 +182,14 @@ public class MenuPresupuestos extends AppCompatActivity {
             String totalPrecioTrabajadorString = String.valueOf(totalPrecioTrabajador);
             etxtTotalTrabajador.setText("Mano de obra: " + totalPrecioTrabajadorString);
 
-             inversion = Double.parseDouble(txtprecioGasto);
-             totalBruto = Double.parseDouble(txtprecioCobrar);
-             iva = Double.parseDouble(txtIVA);
+            inversion = Double.parseDouble(txtprecioGasto);
+            totalBruto = Double.parseDouble(txtprecioCobrar);
+            iva = Double.parseDouble(txtIVA);
 
-             calculoIVA = totalBruto * iva / 100;
-             totalNeto = calculoIVA + totalBruto;
+            calculoIVA = totalBruto * iva / 100;
+            totalNeto = calculoIVA + totalBruto;
 
-             beficiosTotales = (totalNeto - totalPrecioTrabajador) - inversion;
+            beficiosTotales = (totalNeto - totalPrecioTrabajador) - inversion;
 
             etxtBruto.setText("Total bruto: " + totalBruto);
             etxtIvaPorcentajeTotal.setText("IVA: " + calculoIVA);
@@ -209,10 +198,6 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
         }
-
-
-
-
 
 
         btnCliente.setOnClickListener(new View.OnClickListener() {
@@ -243,7 +228,8 @@ public class MenuPresupuestos extends AppCompatActivity {
             public void onClick(View v) {
                 txtnombreFichero = enombreFichero.getText().toString();
                 generarPdf();
-                Toast.makeText(MenuPresupuestos.this, "PDF lanzado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuPresupuestos.this, "!ÉXITO¡", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MenuPresupuestos.this, "Su fichero se ha creado en la carpeta de descargas", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -257,13 +243,12 @@ public class MenuPresupuestos extends AppCompatActivity {
         Document documento = new Document();
 
         try {
+// creamos el fichero con el nombre que queramos
+            File file = crearFichero(txtnombreFichero + ".pdf");
 
-            File f = crearFichero(txtnombreFichero + ".pdf");
-
-            // Creamos el flujo de datos de salida para el fichero donde
-            // guardaremos el pdf.
+            // se crea el flujo de salida para el fichero donde guardaremos el pdf
             FileOutputStream ficheroPdf = new FileOutputStream(
-                    f.getAbsolutePath());
+                    file.getAbsolutePath());
 
             // Asociamos el flujo que acabamos de crear al documento.
 
@@ -272,7 +257,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             documento.open();
 
 
-            // Añadimos un titulo con la fuente por defecto.
+            // Podemos agregar un estilo de fuente
 
             Font titulo = FontFactory.getFont(FontFactory.TIMES_ROMAN, 20,
                     Font.BOLD);
@@ -285,7 +270,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             documento.setPageSize(A4);
             PdfPTable cabeceraPrincipal = new PdfPTable(1);
 
-            cabeceraPrincipal.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cabeceraPrincipal.setHorizontalAlignment(Element.ALIGN_CENTER);
             cabeceraPrincipal.addCell(new Paragraph("Número de factura: " + txtNumeroFactura, subtitulo));
             cabeceraPrincipal.addCell(new Phrase("Fecha de factura: " + txtFechaFactura, subtitulo));
             cabeceraPrincipal.addCell(new Phrase("Nombre del encargado: " + txtnombreEncargado));
@@ -295,9 +280,9 @@ public class MenuPresupuestos extends AppCompatActivity {
 
 
             PdfPTable tablaCabeceraEmpresa = new PdfPTable(2);
-            tablaCabeceraEmpresa.setHorizontalAlignment(Element.ALIGN_LEFT);
+            tablaCabeceraEmpresa.setHorizontalAlignment(Element.ALIGN_CENTER);
             tablaCabeceraEmpresa.addCell(new Phrase("NIF / DNI / NIE: " + dato0Empresa, parrafo));
-            tablaCabeceraEmpresa.addCell(new Phrase("Nombre emprsa o particular: " + dato1Empresa));
+            tablaCabeceraEmpresa.addCell(new Phrase("Nombre emprsa o particular: " + "\n" + dato1Empresa));
             tablaCabeceraEmpresa.addCell(new Phrase("Domicilio: " + dato3Empresa));
             tablaCabeceraEmpresa.addCell(new Phrase("Localidad: " + dato4Empresa));
             tablaCabeceraEmpresa.addCell(new Phrase("Código postal: " + dato5Empresa));
@@ -306,7 +291,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             tablaCabeceraEmpresa.setSpacingAfter(10);
 
             PdfPTable tablaCabeceraCliente = new PdfPTable(2);
-            tablaCabeceraCliente.setHorizontalAlignment(Element.ALIGN_LEFT);
+            tablaCabeceraCliente.setHorizontalAlignment(Element.ALIGN_CENTER);
             tablaCabeceraCliente.addCell(new Phrase("NIF / DNI / NIE: " + dato0c, parrafo));
             tablaCabeceraCliente.addCell(new Phrase("Nombre: " + dato1c + " " + dato2c));
             tablaCabeceraCliente.addCell(new Phrase("Domicilio: " + dato3c));
@@ -317,17 +302,17 @@ public class MenuPresupuestos extends AppCompatActivity {
             tablaCabeceraCliente.setSpacingAfter(10);
 
 
-//y donde metes el presupuesto en el codigo donde generas la factura donde estan los detalles del presupuesto
             PdfPTable tablaPrincipal = new PdfPTable(1);
             tablaPrincipal.setSpacingAfter(10);
+            tablaPrincipal.setHorizontalAlignment(Element.ALIGN_CENTER);
 
             tablaPrincipal.addCell(new Phrase("Trabajo realizado en: " + txtdireccionReforma));
-            tablaPrincipal.addCell(new Phrase("Descripcion del trabajo: " + "\n" + dato7c));
+            tablaPrincipal.addCell(new Phrase("Descripción del trabajo: " + "\n" +"\n"+ txtDetalles));
 
             PdfPTable totalObra = new PdfPTable(1);
-            totalObra.addCell(new Phrase("TOTAL BRUTO: "+String.valueOf(totalBruto)));
-            totalObra.addCell(new Phrase("IVA " + txtIVA + "%" + ": "+calculoIVA));
-            totalObra.addCell(new Phrase("TOTAL NETO: "+totalNeto));
+            totalObra.addCell(new Phrase("TOTAL BRUTO: " + String.valueOf(totalBruto+" €")));
+            totalObra.addCell(new Phrase("IVA " + txtIVA + "%" + ": " + calculoIVA+" €"));
+            totalObra.addCell(new Phrase("TOTAL NETO: " + totalNeto+" €"));
 
 
             documento.add(cabeceraPrincipal);
@@ -345,13 +330,7 @@ public class MenuPresupuestos extends AppCompatActivity {
             documento.add(tablaPrincipal);
             documento.add(totalObra);
 
-            // Agregar marca de agua
-            /*font = FontFactory.getFont(FontFactory.HELVETICA, 42, Font.BOLD,
-                    Color.GRAY);
-            ColumnText.showTextAligned(escribir.getDirectContentUnder(),
-                    Element.ALIGN_CENTER, new Paragraph(
-                            "", font), 297.5f, 421,
-                    escribir.getPageNumber() % 2 == 1 ? 45 : -45);*/
+
             documento.close();
         } catch (DocumentException e) {
 
@@ -361,13 +340,10 @@ public class MenuPresupuestos extends AppCompatActivity {
 
             Log.e("", e.getMessage());
 
-        } /*finally {
-            // Cerramos el documento.
-            documento.close();
-        }*/
+        }
     }
 
-
+    //
     public static File crearFichero(String nombreFichero) throws IOException {
         File ruta = getRuta();
         File fichero = null;
@@ -378,8 +354,7 @@ public class MenuPresupuestos extends AppCompatActivity {
 
     public static File getRuta() {
 
-        // El fichero sera almacenado en un directorio dentro del directorio
-        // Descargas
+        // El fichero se va a guardar dentro del directorio Descargas/Facturas
         File ruta = null;
         if (Environment.MEDIA_MOUNTED.equals(Environment
                 .getExternalStorageState())) {
