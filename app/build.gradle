@@ -1,8 +1,6 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -30,15 +28,13 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     //generador de pdf
     implementation 'com.itextpdf:itextg:5.5.10'
-    //visor de pdf
-    implementation 'com.github.barteksc:android-pdf-viewer:2.8.1'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta1'
     implementation 'com.android.support:design:28.0.0'
     testImplementation 'junit:junit:4.13-beta-3'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation project(path: ':droidText.0.4')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/droidText.0.4.jar')
+
 }

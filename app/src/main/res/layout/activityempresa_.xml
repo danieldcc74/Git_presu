@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         <EditText
-
+                android:textColorHint="#000"
                 android:paddingLeft="20sp"
                 android:id="@+id/identificacionEmpresa"
                 android:layout_width="match_parent"
@@ -37,17 +37,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:textColorHint="#000"
                 android:paddingLeft="20sp"
                 android:id="@+id/nombreEmpresa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
         <TextView
+
                 android:textStyle="bold"
                 android:text="Domicilio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:textColorHint="#000"
                 android:paddingLeft="20sp"
                 android:id="@+id/domicilioEmpresa"
                 android:layout_width="match_parent"
@@ -58,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:textColorHint="#000"
                 android:paddingLeft="20sp"
                 android:id="@+id/localidadEmpresa"
                 android:layout_width="match_parent"
@@ -68,6 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:textColorHint="#000"
+
                 android:paddingLeft="20sp"
                 android:id="@+id/codigoPostalEmpresa"
                 android:layout_width="match_parent"
@@ -78,6 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:textColorHint="#000"
+
                 android:paddingLeft="20sp"
                 android:id="@+id/tlfEmpresa"
                 android:layout_width="match_parent"
@@ -88,6 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:textColorHint="#000"
                 android:paddingLeft="20sp"
                 android:id="@+id/correoEmpresa"
                 android:layout_width="match_parent"
@@ -95,7 +104,7 @@
 
         <Button
                 android:id="@+id/btnSiguienteAlCliente"
-                android:hint="Siguiente"
+                android:text="Siguiente"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
     </LinearLayout>

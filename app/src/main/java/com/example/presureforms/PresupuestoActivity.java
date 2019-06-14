@@ -6,13 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import static com.example.presureforms.MenuPresupuestos.*;
 
 public class PresupuestoActivity extends AppCompatActivity {
     Button btnSiguienteGenerar;
 
     EditText nfacturaPresu, fechaPresu;
-    EditText modoPago, direcionReformaPresu, encargadoPresu, licenciaPresu, detallesTrabajoPresu, cantidadTrabajadoresPresu, precioTrabajadorDiaPresu, diasFinalizacionPresu, precioGastoPresu, precioCobrarPresu, ivaPresu;
+    EditText modoPago, direcionReformaPresu, encargadoPresu, licenciaPresu, detallesPresu, cantidadTrabajadoresPresu, precioTrabajadorDiaPresu, diasFinalizacionPresu, precioGastoPresu, precioCobrarPresu, ivaPresu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class PresupuestoActivity extends AppCompatActivity {
         encargadoPresu = (EditText) findViewById(R.id.encargado);
         licenciaPresu = (EditText) findViewById(R.id.licencia);
         modoPago = (EditText) findViewById(R.id.modoPagoE);
-        detallesTrabajoPresu = (EditText) findViewById(R.id.detallesDelTrabajo);
-        cantidadTrabajadoresPresu = (EditText) findViewById(R.id.encargado);
+        detallesPresu = (EditText) findViewById(R.id.dellates);
+        cantidadTrabajadoresPresu = (EditText) findViewById(R.id.cantidadTrabajadores);
         precioTrabajadorDiaPresu = (EditText) findViewById(R.id.precioTrabajadorDia);
         diasFinalizacionPresu = (EditText) findViewById(R.id.diasFinalizacion);
         precioGastoPresu = (EditText) findViewById(R.id.precioGasto);
@@ -46,8 +47,8 @@ public class PresupuestoActivity extends AppCompatActivity {
                txtdireccionReforma = direcionReformaPresu.getText().toString();
                txtnombreEncargado = encargadoPresu.getText().toString();
                txtLicencia = licenciaPresu.getText().toString();
-               txtDetallesTrabajo = detallesTrabajoPresu.getText().toString();
-               txtNumTrabajadores = cantidadTrabajadoresPresu.getText().toString();
+               txtDetalles= detallesPresu.getText().toString();
+                txtNumTrabajadores = cantidadTrabajadoresPresu.getText().toString();
                txtprecioTrabajadores = precioTrabajadorDiaPresu.getText().toString();
                txtDiasFinalizar = diasFinalizacionPresu.getText().toString();
                txtprecioGasto = precioGastoPresu.getText().toString();

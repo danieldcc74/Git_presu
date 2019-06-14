@@ -23,16 +23,20 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+<EditText
+        android:id="@+id/nombreFichero"
+        android:hint="Nombre del fichero"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-
-                <Button
-                        android:id="@+id/btnRellenarCliente"
-                        android:text="Rellenar datos del cliente"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
                 <Button
                         android:id="@+id/btnRellenarEmpresa"
                         android:text=" Rellenar datos de la Empresa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                <Button
+                        android:id="@+id/btnRellenarCliente"
+                        android:text="Rellenar datos del cliente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 <Button
@@ -241,6 +245,11 @@
                         android:layout_height="wrap_content"/>
                 <TextView
                         android:textStyle="bold"
+                        android:id="@+id/detallesM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:textStyle="bold"
                         android:id="@+id/cantidadTrabajadoresM"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -272,6 +281,7 @@
                         android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
