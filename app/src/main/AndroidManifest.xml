@@ -14,16 +14,17 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Login_Activity">
+        </activity>
         <activity android:name=".MenuPresupuestos">
-
         </activity>
         <activity android:name=".PresupuestoActivity">
         </activity>
         <activity android:name=".EmpresaActivity">
-
         </activity>
-        <activity android:name=".LanzadorActivity"
-        android:theme="@style/AppTheme.NoActionBar">
+        <activity
+                android:name=".LanzadorActivity"
+                android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -31,7 +32,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClienteActivity">
-
         </activity>
     </application>
 
