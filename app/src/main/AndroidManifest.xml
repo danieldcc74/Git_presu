@@ -14,6 +14,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Contacto_Activity">
+        </activity>
+        <activity android:name=".Politica_Activity">
+        </activity>
+        <activity android:name=".Registro">
+        </activity>
+        <activity android:name=".List_Clientes">
+        </activity>
         <activity android:name=".Login_Activity">
         </activity>
         <activity android:name=".MenuPresupuestos">
