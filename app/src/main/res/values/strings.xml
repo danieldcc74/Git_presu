@@ -5,4 +5,7 @@
     <string name="nameActionCliente">Datos del cliente</string>
     <string name="nameActionEmpresa">Datos de la empresa</string>
     <string name="nameActionPresupuesto">Datos del presupuesto</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
