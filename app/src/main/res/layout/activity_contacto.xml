@@ -4,21 +4,45 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".Contacto_Activity">
-    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:padding="20sp"
+        android:background="@drawable/fondogeneral"
+        tools:context=".Contacto_Activity" android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:gravity="center"
                   android:orientation="vertical">
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="Ayudanos a mejorar la aplicación con tus ideas"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="Gmail: danieldcc74@gmail.com"/>
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="CONTACTO"
+                  android:textSize="50sp"
+                  android:textStyle="bold"
+        />
 
-                  android:text="+34 000 00 00 00"/>
+
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="450sp"
+                  android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textSize="20sp"
+                  android:text="Ayudanos a mejorar la aplicación con tus ideas."/>
+        <ImageButton
+
+                android:layout_gravity="center"
+                android:layout_marginTop="50px"
+                android:background="@drawable/gmail"
+                android:layout_width="200px" android:layout_height="200px"
+                android:text="Gmail: danieldcc74@gmail.com"
+                android:id="@+id/btn_social"
+        />
+        <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+                  android:text="+34 000 00 00 00"/>-->
     </LinearLayout>
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-
-            android:id="@+id/btn_volver_contac_sala"
-            android:text="Volver"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="bottom"
+                  android:gravity="bottom|right">
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/btn_volver_contac_sala"
+                android:text="Volver"/>
+    </LinearLayout>
 </LinearLayout>

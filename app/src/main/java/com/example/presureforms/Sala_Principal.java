@@ -67,6 +67,9 @@ public class Sala_Principal extends AppCompatActivity
         if (id == R.id.action_settings) {
 
             return true;
+        } if (id ==R.id.action_politicas){
+            Intent irPoliticas= new Intent(Sala_Principal.this,Politica_Activity.class);
+            startActivity(irPoliticas);
         }
 
 
