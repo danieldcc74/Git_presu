@@ -82,11 +82,11 @@ public class Sala_Principal extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_mis_clientes) {
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_mis_facturas) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_mis_datos) {
 
         } else if (id == R.id.nav_tools) {
 
