@@ -27,7 +27,7 @@
 
                 android:layout_gravity="center"
                 android:layout_marginTop="50px"
-                android:background="@drawable/gmail"
+
                 android:layout_width="200px" android:layout_height="200px"
                 android:text="Gmail: danieldcc74@gmail.com"
                 android:id="@+id/btn_social"

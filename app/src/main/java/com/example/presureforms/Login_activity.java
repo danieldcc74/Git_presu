@@ -1,5 +1,6 @@
 package com.example.presureforms;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -20,7 +21,8 @@ public class Login_activity extends AppCompatActivity implements Response.Listen
     JsonRequest jSolicitud;
 
     EditText box_correo, box_contraseña;
-    Button btn_iniciar_sesion;
+    Button btn_iniciar_sesion ,btn_registro;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,15 @@ public class Login_activity extends AppCompatActivity implements Response.Listen
         box_correo = (EditText) findViewById(R.id.box_email);
         box_contraseña = (EditText) findViewById(R.id.box_password);
         btn_iniciar_sesion = (Button) findViewById(R.id.btn_iniciar_sesion);
+        btn_registro = (Button) findViewById(R.id.btn_registrarse);
 
+        btn_registro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent irRegistro =new Intent (Login_activity.this, Registro_activity.class);
+                startActivity(irRegistro);
+            }
+        });
         btn_iniciar_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +52,7 @@ public class Login_activity extends AppCompatActivity implements Response.Listen
     }
 
     private void metodo_iniciar_sesion() {
-        String url = "poner la ip de mi hosting/user=" + box_correo.getText().toString() + "&pwd=" + box_contraseña.getText().toString();
+        String url = "https://91.199.120.16/inicio_sesion/inicio_sesion.php/user=" + box_correo.getText().toString() + "&pwd=" + box_contraseña.getText().toString();
 
         jSolicitud = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         solicitud.add(jSolicitud);

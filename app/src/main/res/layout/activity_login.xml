@@ -17,26 +17,27 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            tools:layout_editor_absoluteY="143dp" tools:layout_editor_absoluteX="10dp" android:id="@+id/box_email"
+            android:hint="Correo electrónico"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             tools:layout_editor_absoluteY="207dp" tools:layout_editor_absoluteX="10dp" android:id="@+id/box_password"
             style="@android:style/Widget.EditText" android:hint="Contraseña"
             android:textSize="18sp"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            tools:layout_editor_absoluteY="143dp" tools:layout_editor_absoluteX="10dp" android:id="@+id/box_email"
-            android:hint="Correo electrónico"/>
+
     <Button
-            android:text="Button"
+            android:text="Iniciar sesión"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/btn_iniciar_sesion"
             tools:layout_editor_absoluteY="296dp"
             tools:layout_editor_absoluteX="237dp" tools:text="Iniciar sesion"/>
     <Button
-            android:text="Button"
+            android:text="Registrarse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/btn_registrarse" tools:layout_editor_absoluteY="361dp"
             tools:layout_editor_absoluteX="247dp" tools:text="Registrarse"/>
