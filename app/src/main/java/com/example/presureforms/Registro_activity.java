@@ -61,7 +61,8 @@ public class Registro_activity extends AppCompatActivity {
                         || reg_email.getText().toString().isEmpty()
                         || reg_contraseña.getText().toString().isEmpty()
                         || reg_confir_contraseña.getText().toString().isEmpty()
-                        || reg_telefono.getText().toString().isEmpty()) {
+                        || reg_telefono.getText().toString().isEmpty()
+                        &&(reg_contraseña.getText().toString()!=reg_confir_contraseña.getText().toString())) {
                     Toast.makeText(Registro_activity.this, "Los campos no pueden estar vacios", Toast.LENGTH_SHORT).show();
 
                 } else {
