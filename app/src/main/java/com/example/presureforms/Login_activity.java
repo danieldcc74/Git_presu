@@ -45,7 +45,7 @@ public class Login_activity extends AppCompatActivity {
         btn_iniciar_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metodo_iniciar_sesion("http://192.168.0.13:80/registro/validar_usuario.php");
+                metodo_iniciar_sesion("http://192.168.0.13/registro/validar_usuario.php");
             }
         });
     }
@@ -54,7 +54,7 @@ public class Login_activity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                    if(response.isEmpty()){
+                    if(response.contains("1")){
                         Intent irSalaPrincipal = new Intent(Login_activity.this, Sala_Principal.class);
                         startActivity(irSalaPrincipal);
                     }else{

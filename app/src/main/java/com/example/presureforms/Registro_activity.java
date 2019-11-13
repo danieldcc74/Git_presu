@@ -99,7 +99,7 @@ public class Registro_activity extends AppCompatActivity {
                 parametros.put("poblacion_empresa", reg_poblacion_empresa.getText().toString());
                 parametros.put("email", reg_email.getText().toString());
                 parametros.put("contraseña", reg_contraseña.getText().toString());
-                parametros.put("telefono", reg_contraseña.getText().toString());
+                parametros.put("telefono", reg_telefono.getText().toString());
                 return parametros;
             }
         };
