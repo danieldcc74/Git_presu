@@ -87,7 +87,8 @@ public class Sala_Principal extends AppCompatActivity
         } else if (id == R.id.nav_mis_facturas) {
 
         } else if (id == R.id.nav_mis_datos) {
-
+            Intent ir_Mis_datos= new Intent(Sala_Principal.this,Mis_datos.class);
+            startActivity(ir_Mis_datos);
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
